@@ -1,25 +1,25 @@
 {
   "version": "1.0.0",
-  "name": "Web Starter Kit",
+  "name": "Dev4IT - Human Developement Factory",
   "launch_path": "/index.html",
-  "description": "A front-end template that helps you build fast, modern mobile web apps.",
+  "description": "Dev4IT est une Société de Conseil dédiée au monde du #Digital. Nous regroupons une communauté d’Ingénieurs passionnés par les technologies, les nouveaux usages et ayant pour valeurs le succès, le plaisir, la réalisation de soi et la créativité.",
   "icons": {
     "128": "/images/touch/icon-128x128.png"
   },
   "developer": {
-    "name": "",
+    "name": "GuillaumeFE",
     "url": ""
   },
   "installs_allowed_from": [
     "*"
   ],
-  "default_locale": "en",
+  "default_locale": "fr",
   "permissions": {
   },
   "locales": {
-    "en": {
-      "name": "Web Starter Kit",
-      "description": "A front-end template that helps you build fast, modern mobile web apps."
+    "fr": {
+      "name": "Dev4IT - Human Developement Factory",
+      "description": "Dev4IT est une Société de Conseil dédiée au monde du #Digital. Nous regroupons une communauté d’Ingénieurs passionnés par les technologies, les nouveaux usages et ayant pour valeurs le succès, le plaisir, la réalisation de soi et la créativité."
     }
   }
 }

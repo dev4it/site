@@ -32,6 +32,9 @@ var fs = require('fs');
 var path = require('path');
 var packageJson = require('./package.json');
 
+var LOG_PREFIX = 'SD4';
+var CACHE_ID = 'site-dev4it';
+
 // Lint JavaScript
 gulp.task('jshint', function () {
   return gulp.src('app/scripts/**/*.js')
@@ -44,10 +47,10 @@ gulp.task('jshint', function () {
 // Optimize images
 gulp.task('images', function () {
   return gulp.src('app/images/**/*')
-    .pipe($.cache($.imagemin({
+    .pipe($.imagemin({
       progressive: true,
       interlaced: true
-    })))
+    }))
     .pipe(gulp.dest('dist/images'))
     .pipe($.size({title: 'images'}));
 });
@@ -71,7 +74,6 @@ gulp.task('fonts', function () {
     .pipe($.size({title: 'fonts'}));
 });
 
-
 // Compile and automatically prefix stylesheets
 gulp.task('styles', function () {
 
@@ -86,8 +88,6 @@ gulp.task('styles', function () {
     'android >= 4.4',
     'bb >= 10'
   ];
-
-
 
   // For best performance, don't add Sass partials to `gulp.src`
   return gulp.src([
@@ -150,7 +150,7 @@ gulp.task('html', function () {
     .pipe($.useref())
 
     // Minify any HTML
-    .pipe($.if('*.html', $.minifyHtml()))
+    .pipe($.if('*.html', $.minifyHtml({empty: true})))
     // Output files
     .pipe(gulp.dest('dist'))
     .pipe($.size({title: 'html'}));
@@ -164,7 +164,7 @@ gulp.task('serve', ['styles'], function () {
   browserSync({
     notify: false,
     // Customize the BrowserSync console logging prefix
-    logPrefix: 'WSK',
+    logPrefix: LOG_PREFIX,
     // Run as an https by uncommenting 'https: true'
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
@@ -182,7 +182,7 @@ gulp.task('serve', ['styles'], function () {
 gulp.task('serve:dist', ['default'], function () {
   browserSync({
     notify: false,
-    logPrefix: 'WSK',
+    logPrefix: LOG_PREFIX,
     // Run as an https by uncommenting 'https: true'
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
@@ -212,7 +212,6 @@ gulp.task('pagespeed', function (cb) {
   }, cb);
 });
 
-
 // See http://www.html5rocks.com/en/tutorials/service-worker/introduction/ for
 // an in-depth explanation of what service workers are and why you should care.
 // Generate a service worker file that will provide offline functionality for
@@ -223,7 +222,7 @@ gulp.task('generate-service-worker', function (callback) {
 
   swPrecache({
     // Used to avoid cache conflicts when serving on localhost.
-    cacheId: packageJson.name || 'web-starter-kit',
+    cacheId: packageJson.name || CACHE_ID,
     // URLs that don't directly map to single static files can be defined here.
     // If any of the files a URL depends on changes, then the URL's cache entry
     // is invalidated and it will be refetched.

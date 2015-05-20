@@ -1,0 +1,38 @@
+/**
+*
+* Footer
+*
+* Dev4IT
+*
+* R/GA 2015
+* @author Guillaume Fesquet
+*
+**/
+
+
+footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+
+  height: 50px;
+
+  //border-bottom: 1px solid transparent;
+  //border-top: 1px solid transparent;
+
+  //overflow: auto;
+
+  //z-index: 1000;
+
+  @media all and (max-width: $media-max-width) {
+
+    //position: relative;
+    //top: 100px;
+
+    //height: 100px;
+
+    //overflow: hidden;
+
+    //z-index: 1000;
+  }
+}

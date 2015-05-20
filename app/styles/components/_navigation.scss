@@ -1,0 +1,213 @@
+/**
+*
+* Navigation
+*
+* Dev4IT
+*
+* R/GA 2015
+* @author Guillaume Fesquet
+*
+**/
+
+
+nav {
+  position: fixed;
+  top: $nav-top;
+
+  height: $nav-height;
+  width: 100%;
+
+  //overflow: hidden;
+  z-index: 1000;
+
+  background-color: $dev4it-gray;
+
+  @include material-headnav($vshw: 2px, $blur: 5px, $color: rgba(0,0,0,0.26));
+
+  & .right {
+    float: right;
+  }
+
+  & ul li a {
+    padding: 17px 20px;
+
+    height: $nav-height;
+  }
+
+  & ul {
+    padding: 0;
+
+    margin: 0;
+    
+    list-style-type: none;
+
+    & li {
+      border: none;
+      display: inline-block;
+
+      &::before, &:before { //:before 4 IE8
+        content: none;
+      }
+
+      & a {
+        display: block;
+        text-decoration: none;
+        color: white;
+        //transition: background-color 0.2s ease-out;
+        white-space: nowrap;
+
+        &::before, &:before { //:before 4 IE8
+          content: none;
+        }
+
+        &:hover, &:focus, &:active {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        &:focus {
+          background-color: rgba(255, 255, 255, 0.3);
+          outline: 0;
+        }
+
+        &:active {
+          background-color: rgba(255, 255, 255, 0.4);
+        }
+      }
+    }
+  }
+
+
+  @media all and (max-width: $media-max-width) {
+
+    top: $nav-top-media;
+    right: $nav-right-media;
+
+    height: auto;
+    width: auto;
+
+    @include material-headnav($blur: 7px, $color: $dev4it-gray, $radius: 3px);
+
+    & ul li a {
+      height: $nav-height-media;
+      width: $nav-width-media;
+    }
+
+    & ul li {
+
+      border-bottom-style: solid;
+      border-width: 1px;
+      border-color: white;
+
+      display: block;
+
+      &:last-child {
+        border: none;
+      }
+    }
+  }
+}
+
+
+
+/*.navigation {
+  z-index: 1;
+  position: fixed;
+  top: $header-height;
+  left: 0;
+  
+  margin-top: 0;
+  padding: 0 16px;
+
+  width: 100%;
+  height: $nav-height;
+
+  background-color: $dev4it-gray;
+  color: #fefefe;
+  transform: none;
+  transition: none;
+  overflow-y: auto;
+
+  & h4, & ul li a {
+    height: $nav-height;
+    padding: 17px 20px;
+    line-height: 1.4;
+  }
+
+  & h4 {
+    background-color: white;
+    color: $dev4it-gray;
+  }
+
+  & ul {
+    padding: 0;
+    margin: 0;
+    
+    list-style-type: none;
+
+    text-align: right;
+    //display: flex;
+    //flex-direction: row;
+
+    & li {
+      border: none;
+      display: inline-block;
+
+      &::before {
+        content: none;
+      }
+
+      & a {
+        display: block;
+        text-decoration: none;
+        color: white;
+        transition: background-color 0.2s ease-out;
+        white-space: nowrap;
+
+        &::before {
+          content: none;
+        }
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        &:focus {
+          background-color: rgba(255, 255, 255, 0.3);
+          outline: 0;
+        }
+
+        &:active {
+          background-color: rgba(255, 255, 255, 0.4);
+        }
+      }
+    }
+  }
+
+  @media all and (max-width: $media-max-width) {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: $nav-width-media;
+    background-color: $dev4it-gray;
+    color: #fefefe;
+    //transform: translate($nav-width-media, 0);
+    //overflow-y: inherit;
+  
+    & .open {
+      transform: translate(-$nav-height, 0);
+    }
+
+    & .opened {
+      transition: transform 0.3s ease-out;
+    }
+
+    & ul {
+      text-align: center;
+    
+      & li {
+        display: block;
+      }
+    }
+  }  
+}*/

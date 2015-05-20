@@ -21,25 +21,28 @@
 
   var querySelector = document.querySelector.bind(document);
 
-  var navdrawerContainer = querySelector('.navdrawer-container');
-  var body = document.body;
-  var appbarElement = querySelector('.app-bar');
+  //var navdrawerContainer = querySelector('.navigation');
+  var navdrawerContainer = querySelector('.nav');
+  //var body = document.body;
+  //var appbarElement = querySelector('.app-bar');
+  var appbarElement = querySelector('.head');
   var menuBtn = querySelector('.menu');
-  var main = querySelector('main');
+  var main = querySelector('.main');
 
   function closeMenu() {
-    body.classList.remove('open');
+    //body.classList.remove('open');
     appbarElement.classList.remove('open');
     navdrawerContainer.classList.remove('open');
   }
 
   function toggleMenu() {
-    body.classList.toggle('open');
+    //body.classList.toggle('open');
     appbarElement.classList.toggle('open');
     navdrawerContainer.classList.toggle('open');
-    navdrawerContainer.classList.add('opened');
+    //navdrawerContainer.classList.add('opened');
   }
 
+  //body.addEventListener('click', closeMenu);
   main.addEventListener('click', closeMenu);
   menuBtn.addEventListener('click', toggleMenu);
   navdrawerContainer.addEventListener('click', function (event) {

@@ -1,0 +1,145 @@
+/**
+*
+* Header
+*
+* Dev4IT
+*
+* R/GA 2015
+* @author Guillaume Fesquet
+*
+**/
+
+
+header {
+  position: fixed;
+  top: 0;
+
+  width: 100%;
+  height: $header-height;
+
+  background-color: $dev4it-red;
+
+  overflow: hidden;
+  z-index: 1000;
+
+  /*&::after, &:after { //&:after for IE8
+    content: ' ';
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+  }
+
+  & .open, & .open ~ header {
+    transform: translate(0px, 0);
+  }
+
+  & button.menu {
+    display: none;
+  }
+
+  & .logo {
+    float: left;
+    margin: 0;
+    padding: 0;
+    line-height: $header-height;
+    //font-size: 46px;
+    color: #fefefe;
+  }*/
+
+  @media all and (max-width: $media-max-width) {
+
+    height: $header-height-media;
+
+    //transition: height 0.3s ease-out;
+  
+    @include material-headnav($vshw: 2px, $blur: 5px, $color: rgba(0,0,0,0.26));
+
+    /*& .open, & .open ~ header {
+      transform: translate(0, 0);    
+    }
+
+    & .logo {
+      margin: 0 $lineHeight;
+      padding: 0;
+      flex: 1;
+      //font-size: 2em;
+      line-height: $header-height-media;
+      //color: #fefefe;
+      float: none;
+      max-width: none;
+      //font-weight: 300;
+      display: initial;
+    
+      & a {
+        text-decoration: none;
+        color: inherit;
+        font-weight: normal;
+      }
+    }
+
+    & button {
+      width: 60px;
+      height: 60px;
+      background-image: none;
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      display: inline-block;
+      transition: background-color 0.2s ease-out;
+      -webkit-tap-highlight-color: transparent;
+
+      & img {
+        height: 34px;
+        width: 34px;
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      &:focus {
+        background-color: rgba(255, 255, 255, 0.2);
+        outline: 0;
+      }
+
+      &:active {
+        background-color: rgba(255, 255, 255, 0.4);
+      }
+    }*/
+  }
+}
+
+/*.app-bar-container {
+  position: relative;
+  padding: 0 16px;
+  
+  height: $header-height;
+  //max-width: 864px;
+  
+  display: block;
+  box-sizing: border-box;
+
+  background-color: $dev4it-red;
+
+  @media all and (max-width: $media-max-width) {
+    margin: 0 auto;
+    
+    width: 100%;
+    height: $header-height-media;
+    
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.app-bar-actions {
+  float: right;
+
+  @media all and (max-width: $media-max-width) {
+    z-index: 2;
+
+    display: flex;
+    flex-direction: row;
+  }
+}*/

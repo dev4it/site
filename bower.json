@@ -1,0 +1,12 @@
+{
+  "name": "site",
+  "description": "A Dev4IT site with AngularJS",
+  "version": "1.0.0",
+  "homepage": "https://github.com/dev4it/site",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass": "3.3.4",
+    "normalize.css": "3.0.3"
+  }
+}

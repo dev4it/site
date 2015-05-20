@@ -1,0 +1,34 @@
+/**
+*
+* Main
+*
+* Dev4IT
+*
+* R/GA 2015
+* @author Guillaume Fesquet
+*
+**/
+
+
+.main {
+  position: relative;
+  top: $header-height + $nav-height;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  @media all and (max-width: $media-max-width) {
+
+    top: $header-height-media;
+  }
+}
+
+.push {
+  margin-bottom: $header-height + $nav-height;
+
+  @media all and (max-width: $media-max-width) {
+
+    margin-bottom: $header-height-media;
+  }  
+}

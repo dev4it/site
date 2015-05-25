@@ -9,80 +9,85 @@
 *
 **/
 
-
 .home {
-
-  & section {
-
-    //margin-top: $lineHeight;
-    //margin-bottom: $lineHeight;
-
-    border-bottom: 1px solid #ccc;
-    border-top: 1px solid transparent;
-
-    padding-bottom: $lineHeight - 1;
-
-    height: 200px;
-
-    //line-height:  $lineHeight;
-  }
-
-  /*& .styleguide__color-list {
-    text-align: center;
-
-    & li {
-      border-bottom: $lineHeight*2 solid;
-      margin-bottom: $lineHeight;
-      position: relative;
+  background: #fff;
+  & h1 {
+    color: #212121;
+    margin-bottom: 50px;
+    @media only screen and (max-width: $tablet-width) {
+      margin-bottom: inherit;
     }
   }
-
-  & .styleguide__breadcrumb .breadcrumbs{
-    display: block;
+  & section.hero {
+    background-color: transparent;
+    padding-bottom: 0;
+    min-height: 0;
+    @media only screen and (min-width: $tablet-width + 1) {
+      min-height: 420px;
+      padding-top: 100px;
+      padding-bottom: 15px;
+    }
+    & .intro {
+      max-width: 510px;
+      margin-bottom: 30px;
+      & p {
+        margin-top: 0;
+      }
+      @media only screen and (max-width: $tablet-width) {
+        margin-bottom: 15px;
+      }
+    }
+    & md-button {
+      color: #757575;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 32px;
+      margin: 0 0 0 -2px;
+      @media only screen and (max-width: $tablet-width) {
+        font-size: 16px;
+        line-height: 28px;
+      }
+    }
   }
-
-  & .styleguide__inverted-block {
-    background: #e8e8e8;
-    padding: 0 13px;
-  }
-
-  & .styleguide__theme-block {
-    background: $colorLayouts;
-    padding: 0 13px;
-  }
-
-  & .styleguide__typography p {
-    padding-bottom: 26px;
-    padding-top: 0;
-  }
-
-  & .styleguide__typography>strong {
-    padding-top: $lineHeight;
-  }
-
-  & .styleguide__case-study-wrapper {
-
-    & .case-study-wrapper {
+  & #main {
+    padding: 0 0 80px;
+    @media only screen and (max-width: $tablet-width) {
+      padding-bottom: 35px;
+    }
+    & md-button {
+      font-size: 26px;
+      text-align: left;
+      font-weight: 300;
+      & core-icon {
+        margin-left: 15px;
+      }
+      &:hover core-icon {
+        margin-left: 20px;
+      }
+    }
+    & p {
       margin-top: 0;
+      @media only screen and (max-width: $tablet-width) {
+        margin-bottom: 20px;
+      }
+      &.link {
+        margin-bottom: 0;
+      }
     }
-
   }
-
-  & .container pre {
-    margin: 0;
-  }*/
-
-}
-
-:target {
-
-  position: relative;
-  top: -($header-height + $nav-height);
-  
-  display: block;
-
-  @media all and (max-width: $media-max-width) {
-
-    top: -$header-height-media;
+  & .animatic {
+    padding-top: 25px;
+    box-sizing: border-box;
+    max-width: 100%;
+    & def {
+      display: inline-block;
+      color: $dev4it-gray;
+      font-weight: 200;
+      font-size: 35px;
+      & .red {
+        color: $dev4it-red;
+      font-weight: 400;
+      }
+    }
   }
 }

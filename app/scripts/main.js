@@ -16,40 +16,50 @@
  *  limitations under the License
  *
  */
-(function () {
+(function() {
   'use strict';
 
   var querySelector = document.querySelector.bind(document);
 
-  //var navdrawerContainer = querySelector('.navigation');
-  var navdrawerContainer = querySelector('.nav');
-  //var body = document.body;
-  //var appbarElement = querySelector('.app-bar');
-  var appbarElement = querySelector('.head');
-  var menuBtn = querySelector('.menu');
-  var main = querySelector('.main');
+  var menuBtn = querySelector('header .menu');
+  var navDrawer = querySelector('header .drawer');
+  var maskDrawer = querySelector('.drawer-mask');
 
-  function closeMenu() {
-    //body.classList.remove('open');
-    appbarElement.classList.remove('open');
-    navdrawerContainer.classList.remove('open');
-  }
-
-  function toggleMenu() {
-    //body.classList.toggle('open');
-    appbarElement.classList.toggle('open');
-    navdrawerContainer.classList.toggle('open');
-    //navdrawerContainer.classList.add('opened');
-  }
-
-  //body.addEventListener('click', closeMenu);
-  main.addEventListener('click', closeMenu);
   menuBtn.addEventListener('click', toggleMenu);
-  navdrawerContainer.addEventListener('click', function (event) {
+  navDrawer.addEventListener('click', function(event) {
     if (event.target.nodeName === 'A' || event.target.nodeName === 'LI') {
       closeMenu();
     }
   });
+  maskDrawer.addEventListener('click', toggleMenu);
+
+  function toggleMenu() {
+    if (hasClass(navDrawer, 'toggled')) {
+      closeMenu();
+      return;
+    }
+
+    openMenu();
+  }
+
+  // function toggle(t) {
+  //   navDrawer.classList.toggle('toggled', t);
+  //   maskDrawer.classList.toggle('toggled', t);
+  // }
+
+  function openMenu() {
+    navDrawer.classList.add('toggled');
+    maskDrawer.classList.add('toggled');
+  }
+
+  function closeMenu() {
+    navDrawer.classList.remove('toggled');
+    maskDrawer.classList.remove('toggled');
+  }
+
+  function hasClass(element, cls) {
+    return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') >= 0;
+  }
 
   // Your custom JavaScript goes here
 })();

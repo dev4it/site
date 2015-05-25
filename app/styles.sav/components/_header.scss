@@ -1,0 +1,30 @@
+/**
+*
+* Header
+*
+* Dev4IT
+*
+* R/GA 2015
+* @author Guillaume Fesquet
+*
+**/
+
+
+header {
+  position: fixed;
+  top: 0;
+
+  width: 100%;
+  height: $header-height;
+
+  background-color: $dev4it-red;
+
+  z-index: 1000;
+
+  @media all and (max-width: $media-max-width) {
+
+    @include material-headnav($vshw: 2px, $blur: 5px, $color: rgba(0,0,0,0.26));
+
+    height: $header-height-media;
+  }
+}

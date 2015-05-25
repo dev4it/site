@@ -11,24 +11,14 @@
 
 
 .main {
+
   position: relative;
   top: $header-height + $nav-height;
 
   width: 100%;
 
-  overflow: hidden;
-
-  @media all and (max-width: $media-max-width) {
+  @media all and (max-width: $tablet-width) {
 
     top: $header-height-media;
   }
-}
-
-.push {
-  margin-bottom: $header-height + $nav-height;
-
-  @media all and (max-width: $media-max-width) {
-
-    margin-bottom: $header-height-media;
-  }  
 }

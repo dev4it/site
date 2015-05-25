@@ -1,0 +1,61 @@
+/**
+* Dev4IT Specializations
+*
+**/
+/* CSS*/
+/* SASS variables*/
+
+$media-max-width: 990px;
+
+$header-height: 130px;
+$header-height-media: 60px;
+
+$nav-height: $header-height-media;
+$nav-width-media: 250px;
+$nav-translation: 310px;
+
+$dev4it-gray: #6E7B7C;
+$dev4it-red: #E74A40;
+
+/*.main {
+  position: relative;
+  top: $header-height + $nav-height;
+
+  //overflow: hidden;
+
+  :target {
+    position: relative;
+    top: -($header-height + $nav-height) + 1;
+    display: block;
+    transition: background-color 0.5s ease-out;
+    visibility: hidden;
+  }
+
+  @media all and (max-width: $media-max-width) {
+    top: $header-height-media;
+
+    :target {
+      position: relative;
+      top: -$header-height-media + 1;
+      visibility: hidden;
+      transition: background-color 0.2s ease-out;
+    }
+  }
+}*/
+
+.clear-padding-top {
+  padding-top: 0;
+}
+/* SASS mixins*/
+
+@mixin material {
+  box-shadow: 0 1px 2px #999;
+  transform: translateZ(0);
+  transition: box-shadow 0.25s ease-in;
+  background-color: #fff;
+  border-radius: 3px;
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+}

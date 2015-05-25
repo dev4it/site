@@ -1,0 +1,79 @@
+/**
+*
+* Home
+*
+* Dev4IT
+*
+* R/GA 2015
+* @author Guillaume Fesquet
+*
+**/
+
+
+.home {
+
+  & section {
+
+    padding-bottom: $lineHeight - 1;
+
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid transparent;
+
+    height: 200px;
+  }
+}
+
+.logo {
+
+  position: fixed;
+  top: 15px;
+  left: 15px;
+
+  height: $header-height + $header-height-media;
+
+  z-index: 10000;
+
+  & img {
+
+    border: 1px solid #fff;
+    @include material-headnav($blur: 7px, $color: $dev4it-gray, $radius: 1px);
+
+    height: 100%;
+  }
+
+  @media all and (max-width: $media-max-width) {
+
+    top: 5px;
+    left: 5px;
+
+    height: $header-height;
+
+    & img {
+
+      @include material-headnav($blur: 3px, $color: $dev4it-gray, $radius: 1px);
+    }
+  }
+}
+
+.push {
+
+  margin-bottom: $header-height + $nav-height;
+
+  @media all and (max-width: $media-max-width) {
+
+    margin-bottom: $header-height-media;
+  }  
+}
+
+:target {
+
+  display: block;
+
+  position: relative;
+  top: -($header-height + $nav-height);
+  
+  @media all and (max-width: $media-max-width) {
+
+    top: -$header-height-media;
+  }
+}

@@ -9,14 +9,14 @@
 *
 **/
 
+@import "_dev4it";
+
 @import "_utils";
 @import "_global";
 
-@import "_dev4it";
-
 @import "components/_header";
-@import "components/_navigation";
-@import "components/_main";
+@import "components/_grid";
+@import "components/_md";
 @import "components/_footer";
 
 @import "pages/_home";

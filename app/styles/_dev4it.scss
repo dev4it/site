@@ -11,68 +11,31 @@
 /* CSS*/
 /* SASS variables*/
 
-
 // Defining baseline line height
 $lineHeight: 26px;
 $colorLayouts: #297ea9;
-
-$media-max-width: 990px;
-
-$header-height: 130px;
-$header-height-media: 60px;
-
+$mobile-width: 400px;
+$tablet-width: 870px;
+$header-height: 70px;
+$header-height-media: 50px;
 $nav-top: $header-height;
 $nav-height: $header-height-media;
 $nav-top-media: $header-height-media * 0.33;
 $nav-right-media: $header-height-media * 0.33;
-$nav-height-media: 50px;
+$nav-height-media: 40px;
 $nav-width-media: 150px;
 $nav-translation: 310px;
-
-$dev4it-gray: #6E7B7C;
 $dev4it-red: #E74A40;
-
-/*.main {
-  position: relative;
-  top: $header-height + $nav-height;
-
-  //overflow: hidden;
-
-  :target {
-    position: relative;
-    top: -($header-height + $nav-height) + 1;
-    display: block;
-    transition: background-color 0.5s ease-out;
-    visibility: hidden;
-  }
-
-  @media all and (max-width: $media-max-width) {
-    top: $header-height-media;
-
-    :target {
-      position: relative;
-      top: -$header-height-media + 1;
-      visibility: hidden;
-      transition: background-color 0.2s ease-out;
-    }
-  }
-}*/
-
+$dev4it-gray: #6E7B7C;
 .clear-padding-top {
   padding-top: 0;
 }
-/* SASS mixins*/
 
 @mixin material($isHoverReactive: true) {
-
   box-shadow: 0 1px 2px #999;
-
+  border-radius: 3px;
   transform: translateZ(0);
   transition: box-shadow 0.25s ease-in;
-  //background-color: #fff;
-
-  border-radius: 3px;
-
   @if $isHoverReactive {
     &:hover {
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -81,7 +44,12 @@ $dev4it-red: #E74A40;
 }
 
 @mixin material-headnav($blur, $color, $radius: 0, $hshw: 0, $vshw: 0) {
-
   box-shadow: $hshw $vshw $blur $color;
   border-radius: $radius;
+}
+
+@mixin clearfix {
+  content: "";
+  display: table;
+  clear: both
 }

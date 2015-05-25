@@ -1,31 +1,39 @@
-<!doctype html>
-<html lang="fr" class="no-js no-touch" itemscope itemtype="http://schema.org/Organization">
+<!DOCTYPE html>
+<html lang="fr" itemscope itemtype="http://schema.org/Organization">
 
-<head>
+<head ng-app="dev4it-app">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="Dev4IT est une Société de Conseil dédiée au monde du #Digital. Nous regroupons une communauté d’Ingénieurs passionnés par les technologies, les nouveaux usages et ayant pour valeurs le succès, le plaisir, la réalisation de soi et la créativité.">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
   <title>Dev4IT - Human Development Factory</title>
+  <meta name="description" content="Dev4IT est une Société de Conseil dédiée au monde du #Digital. Nous regroupons une communauté d’Ingénieurs passionnés par les technologies, les nouveaux usages et ayant pour valeurs le succès, le plaisir, la réalisation de soi et la créativité.">
 
   <!-- Web Application Manifest -->
   <link rel="manifest" href="manifest.json">
 
+  <!-- SEO : Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://dev4it.fr">
+  <meta property="og:title" content="Dev4IT">
+  <meta property="og:image" content="http://dev4it.fr/images/logo/D4-DEV4IT.c.png">
+  <meta property="og:site_name" content="Dev4IT">
+
   <!-- Add to homescreen for Chrome on Android -->
-  <meta name="mobile-web-app-capable" content="yes">
+  <!-- <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="Dev4IT">
-  <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+  <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png"> -->
 
   <!-- Add to homescreen for Safari on iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
-  <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png"> -->
 
   <!-- Tile icon for Win8 (144x144 + tile color) -->
-  <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+  <!-- <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
   <meta name="msapplication-TileColor" content="#E74A40">
-  <meta name="theme-color" content="#E74A40">
+  <meta name="theme-color" content="#E74A40"> -->
 
   <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
   <!--
@@ -33,61 +41,164 @@
     -->
 
   <!-- Page styles -->
-  <link href="http://fonts.googleapis.com/css?family=RobotoDraft:300italic,400italic,700italic,400,300,700" rel="stylesheet" type="text/css">
-  <!-- build:css(app/) styles/build.css -->
-  <!-- <link rel="stylesheet" href="styles/main.css"> -->
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=RobotoDraft:100,300,400,500,700">
+  <!-- build:css css/build.css -->
   <link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild -->
+
 
 </head>
 
 <body class="home">
 
-  <header>
-    <h1>Dev<strong>4IT</strong></h1>
+  <div class="drawer-mask hidden mobile-show"></div>
+
+  <header class="fixed">
+    <div class="wrap">
+      <div class="clearfix mobile-hide">
+        <div class="right alt">
+          <a class="tab" href="#about">
+            <md-button class="plain">A propos</md-button>
+          </a>
+          <a class="tab" href="#contact">
+            <md-button class="call shadow content">
+              NOUS CONTACTER
+            </md-button>
+          </a>
+        </div>
+        <div class="fill">
+          <div class="logo">
+            <a href="#"><img src="images/logo/D4-DEV4IT.logo.c.png"></a>
+          </div>
+          <a class="tab" href="#dev-4what">
+            <md-tab data-name="network">
+              <div class="content">Dev4What</div>
+            </md-tab>
+          </a>
+          <a class="tab" href="#dev-4who">
+            <md-tab data-name="plan">
+              <div class="content">Dev4Who</div>
+            </md-tab>
+          </a>
+        </div>
+      </div>
+      <div class="hidden mobile-show content">
+        <div class="clearfix">
+          <div class="left">
+            <div class="logo">
+              <a href="#"><img src="images/logo/D4-DEV4IT.logo.c.png"></a>
+            </div>
+          </div>
+          <div class="right">
+            <a class="tab" href="#contact">
+              <md-button class="call shadow content">
+                NOUS CONTACTER
+              </md-button>
+            </a>
+            <md-icon-button class="menu">
+              <core-icon>
+                <svg viewBox="0 0 24 24">
+                  <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+                </svg>
+              </core-icon>
+            </md-icon-button>
+          </div>
+        </div>
+      </div>
+      <!-- mobile-show content -->
+      <div class="drawer hidden mobile-show">
+        <ul class="nav">
+          <li><a href="#dev-4what">Dev4What</a></li>
+          <li><a href="#dev-4who">Dev4Who</a></li>
+          <li><a href="#about">A propos</a></li>
+        </ul>
+      </div>
+    </div>
   </header>
 
-  <nav>
-    <div class="right">
-      <ul>
-        <li><a href="#dev-4what">Dev<strong>4What</strong></a></li>
-        <li><a href="#dev-4who">Dev<strong>4Who</strong></a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+  <div class="wrap">
+    <div class="content">
+      <section class="hero">
+        <div class="container">
+          <div class="row">
+            <div class="six columns">
+              <h1>Human Development Factory</h1>
+              <p class="intro">
+                Dev4IT est une Société de Conseil dédiée au monde du #Digital. Nous regroupons une communauté d’Ingénieurs passionnés par les nouvelles technologies et les nouveaux usages. Nos valeurs sont : le succès, le plaisir, la réalisation de soi et la créativité.
+              </p>
+            </div>
+            <div class="six columns mobile-hide">
+              <div class="logo">
+                <img src="images/logo/DEV4IT.c.png">
+              </div>
+              <div class="animatic">
+                <def>Dev <def class="red">For</def> It</def>
+                <def>Développement <def class="red">Pour</def> Elle</def>
+                <def>Développement <def class="red">Pour</def> Lui</def>
+                <def>Développement <def class="red">Pour</def> Ca</def>
+                <def>Development <def class="red">For</def> Information Technologies</def>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="main">
+        <div class="container">
+          <div class="row">
+            <div class="four columns">
+              <p class="link">
+                <a href="/about/network/">
+                  <md-button class="arrowed inline standard-case content">
+                    Dev <strong>4What</strong>
+                    <core-icon>
+                      <svg viewBox="0 0 24 24">
+                        <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+                      </svg>
+                    </core-icon>
+                  </md-button>
+                </a>
+                <p>See how we use new technology to give you fast speeds, more coverage, and better connections to Wi-Fi.
+            </div>
+            <div class="four columns">
+              <p class="link">
+                <a href="/about/plan/">
+                  <md-button class="arrowed inline standard-case content">
+                    Dev <strong>4Who</strong>
+                    <core-icon>
+                      <svg viewBox="0 0 24 24">
+                        <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+                      </svg>
+                    </core-icon>
+                  </md-button>
+                </a>
+                <p>Learn how we&#39;re taking a fresh approach to how you pay for wireless and manage your service.
+            </div>
+            <div class="four columns">
+              <p class="link">
+                <a href="/about/experience/">
+                  <md-button class="arrowed inline standard-case content">
+                    The Experience
+                    <core-icon>
+                      <svg viewBox="0 0 24 24">
+                        <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+                      </svg>
+                    </core-icon>
+                  </md-button>
+                </a>
+                <p>Discover how we&#39;re enabling you to communicate across Wi-Fi and cell networks, and the devices you use.
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-  </nav>
 
-  <div class="push"></div>
+    <footer>
+      <p><a href="#">Back to top</a></p>
+    </footer>
+  </div>
 
-  <!-- <div class="main"> -->
-  <a id="dev-4what"></a>
-  <section class="dev-4what">
-    <h2>Dev<strong>4What</strong></h2>
-  </section>
-
-  <a id="dev-4who"></a>
-  <section class="dev-4who">
-    <h2>Dev<strong>4Who</strong></h2>
-  </section>
-
-  <a id="about"></a>
-  <section class="about">
-    <h2>About</h2>
-  </section>
-
-  <a id="contact"></a>
-  <section class="contact">
-    <h2>Contacts</h2>
-  </section>
-  <!-- </div> -->
-
-  <footer>
-    <p><a href="#">Back to top</a></p>
-  </footer>
-
-  <!-- build:js(app/) scripts/build.js -->
+  <!-- build:js js/build.js -->
   <script src="scripts/main.js"></script>
   <script src="scripts/main-sw.js"></script>
   <!-- endbuild -->

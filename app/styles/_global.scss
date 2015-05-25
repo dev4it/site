@@ -1,0 +1,184 @@
+/**
+*
+* Global
+*
+* Dev4IT
+*
+* R/GA 2015
+* @author Guillaume Fesquet
+*
+**/
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: #fbfafb;
+  margin: 0;
+  padding: 0;
+  font-family: $fontDefault;
+  overflow-x: hidden;
+}
+
+img {
+  border: 0;
+}
+
+a {
+  color: $dev4it-red;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  padding: 0;
+  margin: 0;
+  font-weight: 200;
+}
+
+ul li {
+  color: #757575;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 32px;
+  @media only screen and (max-width: $tablet-width) {
+    font-size: 16px;
+    line-height: 28px;
+  }
+}
+
+p {
+  color: #757575;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 32px;
+  @media only screen and (max-width: $tablet-width) {
+    font-size: 16px;
+    line-height: 28px;
+  }
+  & a {
+    font-weight: 300;
+  }
+  &.subtitle {
+    font-size: 28px;
+    line-height: 37px;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+h1 {
+  color: $dev4it-red;
+  font-weight: 200;
+  font-size: 45px;
+  @media only screen and (max-width: $tablet-width) {
+    line-height: 40px;
+    font-size: 30px;
+  }
+  @media only screen and (max-width: $mobile-width) {
+    font-size: 24px !important;
+  }
+}
+
+.colored {
+  & h2 {
+    color: #fff;
+  }
+  & p {
+    color: #fff;
+  }
+}
+
+h2 {
+  color: #212121;
+  font-size: 43px;
+  margin-bottom: 20px;
+  @media only screen and (max-width: &tablet-width) {
+    font-size: 30px;
+    line-height: 40px;
+  }
+}
+
+h3 {
+  font-size: 40px;
+}
+
+.container {
+  box-sizing: border-box;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+  &.md {
+    max-width: 800px;
+  }
+  @media only screen and (max-width: $tablet-width) {
+    padding: 0 40px;
+  }
+}
+
+.contained-to-header {
+  padding: 0 50px;
+}
+
+.hidden {
+  display: none;
+}
+
+.wrap {
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: $tablet-width) {
+  .mobile-show {
+    display: block;
+  }
+  .mobile-hide {
+    display: none;
+  }
+}
+
+.clearfix {
+  &:after {
+    @include clearfix;
+  }
+  & .left {
+    float: left;
+  }
+  & .right {
+    float: right;
+  }
+  & .fill {
+    overflow: hidden;
+    width: auto;
+  }
+}
+
+section.hero {
+  background-color: #fbfafb;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  padding: 65px 0 0;
+  position: relative;
+  min-height: 550px;
+  @media only screen and (max-width: 870px) {
+    min-height: 450px;
+    padding: 40px 0;
+    &.hero h1 {
+      font-size: 30px;
+    }
+  }
+}

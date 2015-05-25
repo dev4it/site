@@ -1,0 +1,163 @@
+/**
+*
+* Header
+*
+* Dev4IT
+*
+* R/GA 2015
+* @author Guillaume Fesquet
+*
+**/
+
+header {
+  font-weight: 500;
+  font-size: 14px;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  &.fixed {
+    transform: translateY(0%);
+    transition: all .25s ease;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  &.hidden {
+    display: block;
+    @media only screen and (max-width: $tablet-width) {
+      transform: translateY(-100%);
+    }
+  }
+  & .wrap {
+    background-color: #fff;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.05);
+  }
+  & .logo {
+    transition: all .25s ease;
+    display: inline-block;
+    max-width: 120px;
+    margin: 0 80px 0 20px;
+    vertical-align: middle;
+    @media only screen and (max-width: $tablet-width) {
+      margin: 0;
+    }
+    @media only screen and (max-width: $mobile-width) {
+      max-width: 90px;
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
+    & img {
+      max-width: 100%;
+    }
+  }
+  & .content.mobile-show {
+    padding: 10px 10px 5px;
+  }
+  /*
+  & .content.mobile-show .hamburger {
+    color: #777;
+  }*/
+  
+  & .alt {
+    padding: 18px 20px 14px;
+    text-align: right;
+  }
+  & md-button {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: left;
+    &.call {
+      background-color: $dev4it-red;
+      color: #fff;
+    }
+    /*@media only screen and (max-width: $tablet-width) {
+      &.call {
+        padding: 0 10px;
+      }
+    }*/
+    @media only screen and (min-width: $tablet-width + 1) {
+      &.call {
+        margin-left: 30px;
+      }
+    }
+  }
+  & a.tab {
+    display: inline-block;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  @media only screen and (max-width: $tablet-width) {
+    & .right {
+      margin-top: 3px;
+    }
+    & .right md-button {
+      margin-right: 10px;
+    }
+    & .right md-icon-button {
+      float: right;
+    }
+  }
+  &+.wrap {
+    margin-top: 66px;
+  }
+}
+
+.drawer {
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  max-height: 0;
+  overflow: hidden;
+  width: 100%;
+  opacity: 0;
+  @media only screen and (max-width: $tablet-width) {
+    &.toggled {
+      opacity: 1;
+      max-height: 250px;
+    }
+    & ul.nav {
+      margin: 10px 0;
+      padding: 0;
+      list-style: none;
+    }
+    & ul.nav li {
+      margin: 0;
+      padding: 0;
+    }
+    & ul.nav li a {
+      transition: color 222ms ease;
+      display: block;
+      padding: 10px 30px;
+      color: black;
+      font-size: 16px;
+      font-weight: 500;
+      opacity: .5;
+    }
+    & ul.nav li a:active {
+      opacity: 1;
+    }
+    & ul.nav li a:hover {
+      background: rgba(0, 0, 0, 0.015);
+      text-decoration: none;
+      opacity: 1;
+    }
+  }
+}
+
+.drawer-mask {
+  transition: opacity .25s ease;
+  opacity: 0;
+  @media only screen and (max-width: $tablet-width) {
+    &.toggled {
+      background-color: rgba(0, 0, 0, 0.3);
+      display: block;
+      position: fixed;
+      opacity: 1;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 99;
+    }
+  }
+}

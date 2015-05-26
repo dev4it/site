@@ -73,7 +73,7 @@ gulp.task('images', function() {
 // Copy all files at the root level (app)
 gulp.task('copy', function() {
   return gulp.src([
-      'app/*', '!app/*.html', 'node_modules/apache-server-configs/dist/.htaccess'
+      'app/*.*', '!app/*.html', 'node_modules/apache-server-configs/dist/.htaccess'
     ], {
       dot: true
     })
@@ -193,7 +193,8 @@ gulp.task('html', function() {
     // Minify any HTML
     .pipe($.if('*.html', $.minifyHtml({
       empty: true,
-      quotes: true
+      quotes: true,
+      loose: true
     })))
 
     // Output files
@@ -285,11 +286,11 @@ gulp.task('generate-service-worker', function(callback) {
     },
     staticFileGlobs: [
       // Add/remove glob patterns to match your directory setup.
-      rootDir + '/fonts/**/*.woff',
-      rootDir + '/images/**/*',
-      rootDir + '/scripts/**/*.js',
-      rootDir + '/' + STYLES_SWITCH + '/**/*.css',
-      rootDir + '/*.{html,json}'
+      //rootDir + '/fonts/**/*.woff',
+      rootDir + '/images/**/*.u.*',
+      rootDir + '/js/**/*.js',
+      rootDir + '/css/**/*.css',
+      rootDir + '/*.{html,json,txt,webapp}'
     ],
     // Translates a static file path to the relative URL that it's served from.
     stripPrefix: path.join(rootDir, path.sep)

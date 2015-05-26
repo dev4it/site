@@ -1,7 +1,7 @@
 md-tab {
   color: black;
   opacity: 1;
-  padding: 30px 15px;
+  padding: 30px 7px;
   text-decoration: none;
   vertical-align: middle;
   text-transform: uppercase;
@@ -31,13 +31,13 @@ md-tab {
 md-button {
   font-weight: 300;
   font-size: 16px;
-  padding-right: 15px;
+  //padding-right: 15px;
   padding-left: 15px;
   display: inline-block;
   position: relative;
   box-sizing: border-box;
   min-width: 5.14em;
-  margin: 0 0.29em;
+  //margin: 0 0.29em;
   text-transform: uppercase;
   outline: none;
   border-radius: 3px;
@@ -53,6 +53,9 @@ md-button {
   }
   &.content {
     padding: 0.7em 0.57em;
+  }
+  &.plain {
+    padding-top: 1px;
   }
   &.inline {
     min-width: 0;

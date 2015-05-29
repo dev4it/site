@@ -25,7 +25,7 @@ header {
   }
   &.hidden {
     display: block;
-    @media only screen and (max-width: $tablet-width) {
+    @media only screen and (max-width: $medium-width) {
       transform: translateY(-100%);
     }
   }
@@ -39,10 +39,13 @@ header {
     max-width: 120px;
     margin: 0 80px 0 20px;
     vertical-align: middle;
-    @media only screen and (max-width: $tablet-width) {
+    @media only screen and (max-width: $large-width) {
+      margin: 0 50px 0 20px;
+    }
+    @media only screen and (max-width: $medium-width) {
       margin: 0;
     }
-    @media only screen and (max-width: $mobile-width) {
+    @media only screen and (max-width: $small-width) {
       max-width: 90px;
       margin-top: 6px;
       margin-bottom: 6px;
@@ -54,14 +57,14 @@ header {
   & .content.mobile-show {
     padding: 10px 10px 5px;
   }
-  /*
-  & .content.mobile-show .hamburger {
-    color: #777;
-  }*/
-  
   & .alt {
     padding: 18px 20px 14px;
     text-align: right;
+    /*    @media only screen and (min-width: $medium-width) {
+      &.call {
+        margin-left: 10px;
+      }
+    }*/
   }
   & md-button {
     font-size: 14px;
@@ -71,15 +74,9 @@ header {
     &.call {
       background-color: $dev4it-red;
       color: #fff;
-    }
-    /*@media only screen and (max-width: $tablet-width) {
-      &.call {
-        padding: 0 10px;
-      }
-    }*/
-    @media only screen and (min-width: $tablet-width + 1) {
-      &.call {
-        margin-left: 30px;
+      margin-left: 30px;
+      @media only screen and (max-width: $large-width) {
+        margin-left: 10px;
       }
     }
   }
@@ -89,15 +86,15 @@ header {
     vertical-align: middle;
     cursor: pointer;
   }
-  @media only screen and (max-width: $tablet-width) {
+  @media only screen and (max-width: $medium-width) {
     & .right {
       margin-top: 3px;
-    }
-    & .right md-button {
-      margin-right: 10px;
-    }
-    & .right md-icon-button {
-      float: right;
+      & md-button {
+        margin-right: 10px;
+      }
+      & md-icon-button {
+        float: right;
+      }
     }
   }
   &+.wrap {
@@ -111,7 +108,7 @@ header {
   overflow: hidden;
   width: 100%;
   opacity: 0;
-  @media only screen and (max-width: $tablet-width) {
+  @media only screen and (max-width: $medium-width) {
     &.toggled {
       opacity: 1;
       max-height: 250px;
@@ -120,27 +117,31 @@ header {
       margin: 10px 0;
       padding: 0;
       list-style: none;
-    }
-    & ul.nav li {
-      margin: 0;
-      padding: 0;
-    }
-    & ul.nav li a {
-      transition: color 222ms ease;
-      display: block;
-      padding: 10px 30px;
-      color: black;
-      font-size: 16px;
-      font-weight: 500;
-      opacity: .5;
-    }
-    & ul.nav li a:active {
-      opacity: 1;
-    }
-    & ul.nav li a:hover {
-      background: rgba(0, 0, 0, 0.015);
-      text-decoration: none;
-      opacity: 1;
+      & li {
+        margin: 0;
+        padding: 0;
+        & a {
+          transition: color 222ms ease;
+          display: block;
+          padding: 10px 30px;
+          color: black;
+          font-size: 16px;
+          font-weight: 500;
+          opacity: .5;
+          & red {
+            color: $dev4it-red;
+          }
+          &:active,
+          &.active {
+            opacity: 1;
+          }
+          &:hover {
+            background: rgba(0, 0, 0, 0.015);
+            text-decoration: none;
+            opacity: 1;
+          }
+        }
+      }
     }
   }
 }
@@ -148,7 +149,7 @@ header {
 .drawer-mask {
   transition: opacity .25s ease;
   opacity: 0;
-  @media only screen and (max-width: $tablet-width) {
+  @media only screen and (max-width: $medium-width) {
     &.toggled {
       background-color: rgba(0, 0, 0, 0.3);
       display: block;

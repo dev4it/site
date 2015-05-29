@@ -14,7 +14,7 @@
   & h1 {
     color: #212121;
     margin-bottom: 50px;
-    @media only screen and (max-width: $tablet-width) {
+    @media only screen and (max-width: $medium-width) {
       margin-bottom: inherit;
     }
   }
@@ -22,19 +22,20 @@
     background-color: transparent;
     padding-bottom: 0;
     min-height: 0;
-    @media only screen and (min-width: $tablet-width + 1) {
+    @media only screen and (min-width: $medium-width + 1) {
       min-height: 420px;
       padding-top: 100px;
       padding-bottom: 15px;
     }
     & .intro {
-      max-width: 710px;
+      max-width: 510px;
       margin-bottom: 30px;
       & p {
         margin-top: 0;
       }
-      @media only screen and (max-width: $tablet-width) {
+      @media only screen and (max-width: $medium-width) {
         margin-bottom: 15px;
+        max-width: 600px;
       }
     }
     & md-button {
@@ -43,7 +44,7 @@
       font-weight: 300;
       line-height: 32px;
       margin: 0 0 0 -2px;
-      @media only screen and (max-width: $tablet-width) {
+      @media only screen and (max-width: $medium-width) {
         font-size: 16px;
         line-height: 28px;
       }
@@ -51,7 +52,7 @@
   }
   & #main {
     padding: 0 0 80px;
-    @media only screen and (max-width: $tablet-width) {
+    @media only screen and (max-width: $medium-width) {
       padding-bottom: 35px;
     }
     & md-button {
@@ -63,11 +64,12 @@
       }
       &:hover core-icon {
         margin-left: 20px;
+        color: $dev4it-red;
       }
     }
     & p {
       margin-top: 0;
-      @media only screen and (max-width: $tablet-width) {
+      @media only screen and (max-width: $medium-width) {
         margin-bottom: 20px;
       }
       &.link {
@@ -77,16 +79,15 @@
   }
   & .animatic {
     padding-top: 25px;
-    box-sizing: border-box;
     max-width: 100%;
     & def {
       display: inline-block;
       color: $dev4it-gray;
       font-weight: 200;
-      font-size: 35px;
-      & .red {
+      font-size: 33px;
+      & red {
         color: $dev4it-red;
-      font-weight: 400;
+        font-weight: 400;
       }
     }
   }

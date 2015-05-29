@@ -14,5 +14,9 @@
   "undef": true,
   "unused": "vars",
   "strict": true,
-  "devel": true
+  "devel": true,
+  // global variables
+  "globals": {
+    "angular": false
+  }
 }

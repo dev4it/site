@@ -33,66 +33,40 @@ var path = require('path');
 var packageJson = require('./package.json');
 
 var LOG_PREFIX = 'SD4';
-var CACHE_ID = 'site-dev4it';
-
-var STYLES_SWITCH = 'styles';
+var CACHE_ID = 'site-dev4it.1';
+var BUILD = 'build';
 
 // Lint JavaScript
 gulp.task('jshint', function() {
   return gulp.src([
-      'app/scripts/**/*.js'
-    ])
+    'app/scripts/**/*.js'
+  ])
 
-    .pipe(reload({
-      stream: true,
-      once: true
-    }))
+  .pipe(reload({
+    stream: true,
+    once: true
+  }))
 
-    .pipe($.jshint())
+  .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
-// Optimize images
-gulp.task('images', function() {
+// Concatenate and minify JavaScript
+gulp.task('scripts', function() {
   return gulp.src([
-      'app/images/**/*'
-    ])
+    'app/**/scripts/**/*.js',
+    'app/**/*angular*/angular*.js',
+    '!app/**/*angular*/*min*.js*'
+  ])
 
-    .pipe($.imagemin({
-      progressive: true,
-      interlaced: true
-    }))
+  .pipe($.uglify({
+    preserveComments: 'some'
+  }))
 
-    .pipe(gulp.dest('dist/images'))
+  .pipe(gulp.dest(BUILD))
     .pipe($.size({
-      title: 'images'
-    }));
-});
-
-// Copy all files at the root level (app)
-gulp.task('copy', function() {
-  return gulp.src([
-      'app/*.*', '!app/*.html', 'node_modules/apache-server-configs/dist/.htaccess'
-    ], {
-      dot: true
-    })
-
-    .pipe(gulp.dest('dist'))
-    .pipe($.size({
-      title: 'copy'
-    }));
-});
-
-// Copy web fonts to dist
-gulp.task('fonts', function() {
-  return gulp.src([
-      'app/fonts/**'
-    ])
-
-    .pipe(gulp.dest('dist/fonts'))
-    .pipe($.size({
-      title: 'fonts'
+      title: 'scripts'
     }));
 });
 
@@ -112,100 +86,131 @@ gulp.task('styles', function() {
   ];
 
   return gulp.src([
-      'app/**/normalize.css/**/*.css', 'app/**/' + STYLES_SWITCH + '/**/*.scss'
-      //, 'app/**/'+STYLES_SWITCH+'.sav/**/*.scss'
-    ])
+    'app/**/styles/**/*.scss',
+    'app/**/normalize.css/**/*.css'
+  ])
 
-    .pipe($.changed('.tmp/' + STYLES_SWITCH, {
-      extension: '.css'
-    }))
+  .pipe($.changed('.tmp/styles', {
+    extension: '.css'
+  }))
 
-    .pipe($.sourcemaps.init())
+  .pipe($.sourcemaps.init())
 
-    .pipe($.sass({
-      precision: 10
-    }).on('error', $.sass.logError))
+  .pipe($.sass({
+    precision: 10
+  }).on('error', $.sass.logError))
 
-    .pipe($.autoprefixer({
-      browsers: AUTOPREFIXER_BROWSERS
-    }))
+  .pipe($.autoprefixer({
+    browsers: AUTOPREFIXER_BROWSERS
+  }))
 
-    .pipe(gulp.dest('.tmp'))
+  .pipe(gulp.dest('.tmp'))
     .pipe($.sourcemaps.write())
 
-    .pipe(gulp.dest('dist'))
+  .pipe(gulp.dest(BUILD))
     .pipe($.size({
       title: 'styles'
     }));
 })
 
-// Concatenate and minify JavaScript
-gulp.task('scripts', function() {
-  return gulp.src([
-      'app/scripts/**/*.js'
-    ])
-
-    .pipe($.uglify({
-      preserveComments: 'some'
-    }))
-
-    .pipe(gulp.dest('dist/scripts'))
-      .pipe($.size({
-        title: 'scripts'
-      }));
-});
-
 // Scan your HTML for assets & optimize them
 gulp.task('html', function() {
   var assets = $.useref.assets({
-    searchPath: '{.tmp,app}'
+    searchPath: [
+      '.tmp',
+      'app'
+    ]
   });
 
   return gulp.src([
-      'app/**/**/*.html'
-    ])
+    'app/**/*.html',
+    'app/**/pages/*.html'
+  ])
 
-    .pipe(assets)
+  .pipe(assets)
 
-    // Concatenate and minify JavaScript
-    .pipe($.if('*.js', $.uglify()))
+  // Concatenate and minify JavaScript
+  .pipe($.if('*.js', $.uglify()))
 
-    // Remove Any Unused CSS
-    // Note: If not using the Style Guide, you can delete it from
-    // the next line to only include styles your project uses.
-    .pipe($.if('*.css', $.uncss({
-      html: [
-        'app/index.html'
-      ],
-      // CSS Selectors for UnCSS to ignore
-      ignore: [
-        /.toggled/
-        //,/.app-bar.open/
-      ]
-    })))
+  // DOES NOT WORK, F..K!!
+  // Remove Any Unused CSS
+  // .pipe($.if('*.css', $.uncss({
+  //   html: [
+  //     '**/pages/*.html',
+  //     '**/index.html'
+  //   ],
+  //   ignore: [
+  //     /.toggled/
+  //   ]
+  // })))
 
-    // Concatenate and minify styles
-    .pipe($.if('*.css', $.csso()))
+  // Concatenate and minify styles
+  .pipe($.if('*.css', $.csso()))
 
-    .pipe(assets.restore())
+  .pipe(assets.restore())
     .pipe($.useref())
 
-    // Minify any HTML
-    .pipe($.if('*.html', $.minifyHtml({
-      empty: true,
-      quotes: true,
-      loose: true
-    })))
+  // Minify any HTML
+  .pipe($.if('*.html', $.minifyHtml({
+    empty: true,
+    quotes: true,
+    loose: true
+  })))
 
-    // Output files
-    .pipe(gulp.dest('dist'))
+  // Output files
+  .pipe(gulp.dest(BUILD))
     .pipe($.size({
       title: 'html'
     }));
 });
 
+// Optimize images
+gulp.task('images', function() {
+  return gulp.src([
+    'app/images/**/*'
+  ])
+
+  .pipe($.imagemin({
+    progressive: true,
+    interlaced: true
+  }))
+
+  .pipe(gulp.dest(BUILD + '/images'))
+    .pipe($.size({
+      title: 'images'
+    }));
+});
+
+// Copy web fonts to BUILD
+gulp.task('fonts', function() {
+  return gulp.src([
+    'app/fonts/**'
+  ])
+
+  .pipe(gulp.dest(BUILD + '/fonts'))
+    .pipe($.size({
+      title: 'fonts'
+    }));
+});
+
+// Copy all files at the root level (app)
+gulp.task('copy', function() {
+  return gulp.src([
+    'app/*.*', '!app/*.html', 'node_modules/apache-server-configs/dist/.htaccess'
+  ], {
+    dot: true
+  })
+
+  .pipe(gulp.dest(BUILD))
+    .pipe($.size({
+      title: 'copy'
+    }));
+});
+
 // Clean output directory
-gulp.task('clean', del.bind(null, ['.tmp', 'dist/*', '!dist/.git'], {dot: true}));
+gulp.task('clean', del.bind(null, ['.tmp', BUILD + '/*', '!' + BUILD + '/.git'], {
+  dot: true
+}));
 
 // Watch files for changes & reload
 gulp.task('serve', ['styles'], function() {
@@ -221,14 +226,13 @@ gulp.task('serve', ['styles'], function() {
   });
 
   gulp.watch(['app/**/*.html'], reload);
-  gulp.watch(['app/**/' + STYLES_SWITCH + '/**/**/**/*.{scss,css}'], ['styles', reload]);
-  //gulp.watch(['app/**/'+STYLES_SWITCH+'.sav/**/**/**/*.{scss,css}'], ['styles', reload]);
+  gulp.watch(['app/**/styles/**/**/**/*.{scss,css}'], ['styles', reload]);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
   gulp.watch(['app/images/**/*'], reload);
 });
 
-// Build and serve the output from the dist build
-gulp.task('serve:dist', ['default'], function() {
+// Build and serve the output from the BUILD
+gulp.task('serve:prd', ['default'], function() {
   browserSync({
     notify: false,
     logPrefix: LOG_PREFIX,
@@ -236,8 +240,8 @@ gulp.task('serve:dist', ['default'], function() {
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: 'dist',
-    baseDir: "dist"
+    server: BUILD,
+    baseDir: BUILD
   });
 });
 
@@ -248,6 +252,26 @@ gulp.task('default', ['clean'], function(cb) {
     // Google Font used instead 
     //['jshint', 'html', 'scripts', 'images', 'fonts', 'copy'],
     ['jshint', 'html', 'scripts', 'images', 'copy'],
+    cb);
+});
+
+// Build and serve the output from the BUILD
+gulp.task('serve:prd-sw', ['default-sw'], function() {
+  browserSync({
+    notify: false,
+    logPrefix: LOG_PREFIX,
+    // Run as an https by uncommenting 'https: true'
+    // Note: this uses an unsigned certificate which on first access
+    //       will present a certificate warning in the browser.
+    // https: true,
+    server: BUILD,
+    baseDir: BUILD
+  });
+});
+
+// Build production files, the default task
+gulp.task('default-sw', ['default'], function(cb) {
+  runSequence(
     'generate-service-worker',
     cb);
 });
@@ -266,10 +290,10 @@ gulp.task('pagespeed', function(cb) {
 // See http://www.html5rocks.com/en/tutorials/service-worker/introduction/ for
 // an in-depth explanation of what service workers are and why you should care.
 // Generate a service worker file that will provide offline functionality for
-// local resources. This should only be done for the 'dist' directory, to allow
+// local resources. This should only be done for the BUILD directory, to allow
 // live reload to work as expected when serving from the 'app' directory.
 gulp.task('generate-service-worker', function(callback) {
-  var rootDir = 'dist';
+  var rootDir = BUILD;
 
   swPrecache({
     // Used to avoid cache conflicts when serving on localhost.
@@ -280,7 +304,7 @@ gulp.task('generate-service-worker', function(callback) {
     // Generally, URLs that depend on multiple files (such as layout templates)
     // should list all the files; a change in any will invalidate the cache.
     // In this case, './' is the top-level relative URL, and its response
-    // depends on the contents of the file 'dist/index.html'.
+    // depends on the contents of the file 'BUILD/index.html'.
     dynamicUrlToDependencies: {
       './': [path.join(rootDir, 'index.html')]
     },
@@ -290,7 +314,7 @@ gulp.task('generate-service-worker', function(callback) {
       rootDir + '/images/**/*.u.*',
       rootDir + '/js/**/*.js',
       rootDir + '/css/**/*.css',
-      rootDir + '/*.{html,json,txt,webapp}'
+      rootDir + '/**/*.{html,json,txt,webapp}'
     ],
     // Translates a static file path to the relative URL that it's served from.
     stripPrefix: path.join(rootDir, path.sep)

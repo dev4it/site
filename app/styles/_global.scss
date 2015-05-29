@@ -52,7 +52,7 @@ ul li {
   font-size: 18px;
   font-weight: 300;
   line-height: 32px;
-  @media only screen and (max-width: $tablet-width) {
+  @media only screen and (max-width: $medium-width) {
     font-size: 16px;
     line-height: 28px;
   }
@@ -63,7 +63,7 @@ p {
   font-size: 18px;
   font-weight: 300;
   line-height: 32px;
-  @media only screen and (max-width: $tablet-width) {
+  @media only screen and (max-width: $medium-width) {
     font-size: 16px;
     line-height: 28px;
   }
@@ -83,11 +83,11 @@ h1 {
   color: $dev4it-red;
   font-weight: 200;
   font-size: 45px;
-  @media only screen and (max-width: $tablet-width) {
+  @media only screen and (max-width: $medium-width) {
     line-height: 40px;
     font-size: 30px;
   }
-  @media only screen and (max-width: $mobile-width) {
+  @media only screen and (max-width: $small-width) {
     font-size: 24px !important;
   }
 }
@@ -105,7 +105,7 @@ h2 {
   color: #212121;
   font-size: 43px;
   margin-bottom: 20px;
-  @media only screen and (max-width: &tablet-width) {
+  @media only screen and (max-width: &medium-width) {
     font-size: 30px;
     line-height: 40px;
   }
@@ -116,14 +116,13 @@ h3 {
 }
 
 .container {
-  box-sizing: border-box;
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
   &.md {
     max-width: 800px;
   }
-  @media only screen and (max-width: $tablet-width) {
+  @media only screen and (max-width: $medium-width) {
     padding: 0 40px;
   }
 }
@@ -141,7 +140,7 @@ h3 {
   margin: 0 auto;
 }
 
-@media only screen and (max-width: $tablet-width) {
+@media only screen and (max-width: $medium-width) {
   .mobile-show {
     display: block;
   }

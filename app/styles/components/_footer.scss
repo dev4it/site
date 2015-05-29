@@ -15,45 +15,48 @@ footer {
   padding: 40px 0 60px;
   position: relative;
   font-size: 14px;
-  @media only screen and (max-width: 870px) {
+  @media only screen and (max-width: $medium-width) {
     padding: 20px 0 40px;
   }
   & .logo {
     margin: 20px 0 40px;
-    @media only screen and (max-width: 870px) {
+    @media only screen and (max-width: $medium-width) {
       margin-bottom: 30px;
     }
     & img {
-      max-height: 35px
+      max-height: 35px;
     }
   }
   & .title {
     color: #fff;
     font-weight: bold;
-    margin-bottom: 18px
+    margin-bottom: 18px;
   }
   & ul {
     list-style: none;
     margin: 0;
-    padding: 0 & li {
+    padding: 0;
+    & li {
       font-size: 14px;
       font-weight: 300;
       line-height: inherit;
-      margin-bottom: 10px &:last-child {
-        margin-bottom: 0
+      margin-bottom: 10px;
+      &:last-child {
+        margin-bottom: 0;
       }
     }
   }
   & a {
     color: #c6c7ca;
-    text-decoration: none &:hover {
+    text-decoration: none;
+    &:hover {
       color: #fff;
-      text-decoration: none
+      text-decoration: none;
     }
   }
-  @media only screen and (max-width: 870px) {
+  @media only screen and (max-width: $medium-width - 200) {
     & .block+.block {
-      margin-top: 40px
+      margin-top: 40px;
     }
   }
 }

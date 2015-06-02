@@ -39,9 +39,9 @@ header {
     max-width: 120px;
     margin: 0 80px 0 20px;
     vertical-align: middle;
-    @media only screen and (max-width: $large-width) {
+    /*@media only screen and (max-width: $large-width) {
       margin: 0 50px 0 20px;
-    }
+    }*/
     @media only screen and (max-width: $medium-width) {
       margin: 0;
     }
@@ -60,11 +60,6 @@ header {
   & .alt {
     padding: 18px 20px 14px;
     text-align: right;
-    /*    @media only screen and (min-width: $medium-width) {
-      &.call {
-        margin-left: 10px;
-      }
-    }*/
   }
   & md-button {
     font-size: 14px;
@@ -75,9 +70,9 @@ header {
       background-color: $dev4it-red;
       color: #fff;
       margin-left: 30px;
-      @media only screen and (max-width: $large-width) {
+      /*@media only screen and (max-width: $large-width) {
         margin-left: 10px;
-      }
+      }*/
     }
   }
   & a.tab {
@@ -128,9 +123,6 @@ header {
           font-size: 16px;
           font-weight: 500;
           opacity: .5;
-          & red {
-            color: $dev4it-red;
-          }
           &:active,
           &.active {
             opacity: 1;

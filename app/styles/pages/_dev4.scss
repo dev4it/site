@@ -1,0 +1,41 @@
+/**
+*
+* Dev4Why, Dev4What, Dev4You
+*
+* Dev4IT
+*
+* R/GA 2015
+* @author Guillaume Fesquet
+*
+**/
+
+.dev4why,
+.dev4what,
+.dev4you {
+  & h1 {
+    color: $dev4it-red;
+    max-width: 750px;
+  }
+  & .colored {
+    & .row {
+      margin: 0 auto;
+      max-width: 1000px;
+    }
+    & .content.padded {
+      @media only screen and (max-width: $medium-width) {
+        padding: 40px;
+      }
+      @media only screen and (min-width: $medium-width + 1) {
+        padding: 80px 20px;
+      }
+    }
+  }
+  & .coverage-check {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 40px;
+    margin: -40px;
+    @media only screen and (min-width: $medium-width + 1) {
+      margin-right: 0px;
+    }
+  }
+}

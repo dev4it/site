@@ -24,8 +24,8 @@
     min-height: 0;
     @media only screen and (min-width: $medium-width + 1) {
       min-height: 420px;
-      padding-top: 100px;
-      padding-bottom: 15px;
+      padding-top: 130px;
+      padding-bottom: 20px;
     }
     & .intro {
       max-width: 510px;
@@ -34,9 +34,13 @@
         margin-top: 0;
       }
       @media only screen and (max-width: $medium-width) {
-        margin-bottom: 15px;
         max-width: 600px;
       }
+    }
+    & .logo {
+      max-width: 90%;
+      margin-left: 10%;
+      margin-right: 10%;
     }
     & md-button {
       color: #757575;
@@ -79,15 +83,16 @@
   }
   & .animatic {
     padding-top: 25px;
+    margin-bottom: 30px;
     max-width: 100%;
+    text-align: center;
     & def {
       display: inline-block;
-      color: $dev4it-gray;
+      color: $dev4it-red;
       font-weight: 200;
-      font-size: 33px;
-      & red {
-        color: $dev4it-red;
-        font-weight: 400;
+      font-size: 22px;
+      @media only screen and (max-width: $large-width) {
+        font-size: 20px;
       }
     }
   }

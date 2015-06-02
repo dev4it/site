@@ -26,14 +26,14 @@ $gutter-width: 4%;
       &:first-child {
         margin-left: 0;
       }
-      /*& .reversed {
+      .reversed & {
         margin-left: 0;
       }
-      &:first-child .reversed {
+      .reversed &:first-child {
         float: right;
         margin-left: $gutter-width;
       }
-      &.one {
+      /*&.one {
         width: column-width(1); // first of a 12 cells table grid
       }
       &.offset-by-one {
@@ -123,16 +123,31 @@ $gutter-width: 4%;
       margin-left: 0;
     }
   }
-  /*&s.seven {
-      width: column-width(7);
+
+  &s.four {
+    width: column-width(4);
+  }
+  &s.five {
+    width: column-width(5);
+  }
+  &s.seven {
+    width: column-width(7);
+  }
+  &s.eight {
+    width: column-width(8);
+  }
+  &s.nine {
+    width: column-width(9);
+  }
+  &s {
+    @media (max-width: $medium-width) {
+      &.four, &.five, &.seven, &.eight, &.nine {
+        width: 100%;
+        margin-left: 0;
+      }
     }
-    &s.eight {
-      width: column-width(8);
-    }
-    &s.nine {
-      width: column-width(9);
-    }
-    &s.ten {
+  }
+  /*  &s.ten {
       width: column-width(10);
     }
     &s.eleven {
@@ -145,12 +160,24 @@ $gutter-width: 4%;
   
   &.one-third {
     width: column-width(1, 3);
+    @media (max-width: $medium-width) {
+      width: 100%;
+      margin-left: 0;
+    }
   }
   &.two-thirds {
     width: column-width(2, 3);
+    @media (max-width: $medium-width) {
+      width: 100%;
+      margin-left: 0;
+    }
   }
   &.one-half {
     width: column-width(1, 2);
+    @media (max-width: $medium-width) {
+      width: 100%;
+      margin-left: 0;
+    }
   }
   //}
 }

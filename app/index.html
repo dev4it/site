@@ -42,16 +42,16 @@
 
   <!-- Page styles -->
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=RobotoDraft:100,200,300,400,500">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
 
-  <!-- build:css css/build.css -->
+  <!-- build:css(.tmp/) css/build.css -->
   <link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild -->
 
 </head>
 
-<body class="home" data-ng-controller="mainCtrl">
+<body data-ng-controller="mainCtrl">
 
   <div class="drawer-mask hidden mobile-show"></div>
 
@@ -74,22 +74,22 @@
           </div>
           <a class="tab" href="#/dev4why">
             <md-tab ng-class="{active: $location.path() == '/dev4why'}">
-              <div class="content">Dev<red>4</red>Why</div>
+              <div class="content">Dev<r>4</r>Why</div>
             </md-tab>
           </a>
           <a class="tab" href="#/dev4what">
             <md-tab ng-class="{active: $location.path() == '/dev4what'}">
-              <div class="content">Dev<red>4</red>What</div>
+              <div class="content">Dev<r>4</r>What</div>
             </md-tab>
           </a>
-          <a class="tab" href="#/dev4who">
+          <!-- <a class="tab" href="#/dev4who">
             <md-tab ng-class="{active: $location.path() == '/dev4who'}">
-              <div class="content">Dev<red>4</red>Who</div>
+              <div class="content">Dev<r>4</r>Who</div>
             </md-tab>
-          </a>
+          </a> -->
           <a class="tab" href="#/dev4you">
             <md-tab ng-class="{active: $location.path() == '/dev4you'}">
-              <div class="content">Dev<red>4</red>You</div>
+              <div class="content">Dev<r>4</r>You</div>
             </md-tab>
           </a>
         </div>
@@ -116,10 +116,10 @@
       <!-- mobile-show content -->
       <div class="drawer hidden mobile-show">
         <ul class="nav">
-          <li><a href="#/dev4why" ng-class="{active: $location.path() == '/dev4why'}">Dev<red>4</red>Why</a></li>
-          <li><a href="#/dev4what" ng-class="{active: $location.path() == '/dev4what'}">Dev<red>4</red>What</a></li>
-          <li><a href="#/dev4who" ng-class="{active: $location.path() == '/dev4who'}">Dev<red>4</red>Who</a></li>
-          <li><a href="#/dev4you" ng-class="{active: $location.path() == '/dev4you'}">Dev<red>4</red>You</a></li>
+          <li><a href="#/dev4why" ng-class="{active: $location.path() == '/dev4why'}">Dev<r>4</r>Why</a></li>
+          <li><a href="#/dev4what" ng-class="{active: $location.path() == '/dev4what'}">Dev<r>4</r>What</a></li>
+          <!-- <li><a href="#/dev4who" ng-class="{active: $location.path() == '/dev4who'}">Dev<r>4</r>Who</a></li> -->
+          <li><a href="#/dev4you" ng-class="{active: $location.path() == '/dev4you'}">Dev<r>4</r>You</a></li>
           <li><a href="#/about" ng-class="{active: $location.path() == '/about'}">A propos</a></li>
         </ul>
       </div>
@@ -127,11 +127,11 @@
   </header>
 
   <div class="wrap">
-    <div data-ng-view></div>
+    <div data-ng-view autoscroll></div>
 
     <footer>
       <div class="container">
-        <div class="logo"><img src="images/logo/DEV4IT.w.png"></div>
+        <div class="logo"><img src="images/logo/DEV4IT.w.u.png"></div>
         <div class="row">
           <div class="four columns block">
             <div class="title">Pourquoi Dev4IT ?</div>
@@ -153,13 +153,12 @@
     </footer>
   </div>
 
-  <!-- build:js js/build.js -->
+  <!-- build:js(app/) js/build.js -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="scripts/app.js"></script>
   <script src="scripts/controllers.js"></script>
   <script src="scripts/main.js"></script>
-  <!-- <script src="scripts/main-sw.js"></script> -->
   <!-- endbuild -->
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID

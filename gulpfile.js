@@ -116,14 +116,11 @@ gulp.task('styles', function() {
 // Scan your HTML for assets & optimize them
 gulp.task('html', function() {
   var assets = $.useref.assets({
-    searchPath: [
-      '.tmp',
-      'app'
-    ]
+    searchPath: '{.tmp,app}'
   });
 
   return gulp.src([
-    'app/**/*.html',
+    'app/**/index.html',
     'app/**/pages/*.html'
   ])
 
@@ -132,23 +129,23 @@ gulp.task('html', function() {
   // Concatenate and minify JavaScript
   .pipe($.if('*.js', $.uglify()))
 
-  // DOES NOT WORK, F..K!!
   // Remove Any Unused CSS
-  // .pipe($.if('*.css', $.uncss({
-  //   html: [
-  //     '**/pages/*.html',
-  //     '**/index.html'
-  //   ],
-  //   ignore: [
-  //     /.toggled/
-  //   ]
-  // })))
+  .pipe($.if('*.css', $.uncss({
+    html: [
+      'app/**/index.html',
+      'app/**/pages/*.html'
+    ],
+    ignore: [
+      /.toggled/,
+      /.active/
+    ]
+  })))
 
   // Concatenate and minify styles
   .pipe($.if('*.css', $.csso()))
 
   .pipe(assets.restore())
-    .pipe($.useref())
+  .pipe($.useref())
 
   // Minify any HTML
   .pipe($.if('*.html', $.minifyHtml({
@@ -272,7 +269,7 @@ gulp.task('serve:prd-sw', ['default-sw'], function() {
 // Build production files, the default task
 gulp.task('default-sw', ['default'], function(cb) {
   runSequence(
-    'generate-service-worker',
+    'sw',
     cb);
 });
 
@@ -292,7 +289,7 @@ gulp.task('pagespeed', function(cb) {
 // Generate a service worker file that will provide offline functionality for
 // local resources. This should only be done for the BUILD directory, to allow
 // live reload to work as expected when serving from the 'app' directory.
-gulp.task('generate-service-worker', function(callback) {
+gulp.task('sw', function(callback) {
   var rootDir = BUILD;
 
   swPrecache({
@@ -311,7 +308,7 @@ gulp.task('generate-service-worker', function(callback) {
     staticFileGlobs: [
       // Add/remove glob patterns to match your directory setup.
       //rootDir + '/fonts/**/*.woff',
-      rootDir + '/images/**/*.u.*',
+      rootDir + '/images/**/*.u.{png,svg,ico,jpg,jpeg,gif}',
       rootDir + '/js/**/*.js',
       rootDir + '/css/**/*.css',
       rootDir + '/**/*.{html,json,txt,webapp}'
@@ -322,7 +319,7 @@ gulp.task('generate-service-worker', function(callback) {
     if (error) {
       return callback(error);
     }
-    fs.writeFile(path.join(rootDir, 'service-worker.js'),
+    fs.writeFile(path.join('.tmp', 'service-worker.js'),
       serviceWorkerFileContents,
       function(error) {
         if (error) {
@@ -330,6 +327,9 @@ gulp.task('generate-service-worker', function(callback) {
         }
         callback();
       });
+    gulp.src('.tmp/service-worker.js')
+    .pipe($.uglify())
+    .pipe(gulp.dest(BUILD));
   });
 });
 

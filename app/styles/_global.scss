@@ -105,7 +105,7 @@ h2 {
   color: #212121;
   font-size: 43px;
   margin-bottom: 20px;
-  @media only screen and (max-width: &medium-width) {
+  @media only screen and (max-width: $medium-width) {
     font-size: 30px;
     line-height: 40px;
   }
@@ -131,6 +131,37 @@ h3 {
   padding: 0 50px;
 }
 
+section.hero {
+  background-color: #fbfafb;
+  background-position: bottom;
+  padding: 65px 0 0;
+  position: relative;
+  min-height: 350px;
+  @media only screen and (max-width: $medium-width) {
+    min-height: 250px;
+    padding: 40px 0;
+    & h1 {
+      font-size: 30px;
+    }
+  }
+  & .fab-container {
+    bottom: 0;
+    box-sizing: border-box;
+    max-width: 100%;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+    & .fab {
+      bottom: -30px;
+      margin: 0 auto;
+      text-align: center;
+      display: inline-block;
+      position: relative;
+    }
+  }
+}
+
 .hidden {
   display: none;
 }
@@ -140,6 +171,191 @@ h3 {
   margin: 0 auto;
 }
 
+.colored {
+  background: $dev4it-red;
+  color: #fff;
+  & p {
+    color: #fff;
+  }
+  & .alt {
+    background: #2c655a;
+  }
+  &.blue {
+    background: #00bcd4;
+    & .alt {
+      background: #4b91ef;
+    }
+  }
+  &.teal {
+    background: #03bcd4;
+  }
+  &.client {
+    background: $dev4it-client;
+    & h2 {
+      color: #000;
+      opacity: 0.8;
+    }
+    & p {
+      color: #000;
+      opacity: 0.5;
+    }
+  }
+  &.collab {
+    background: $dev4it-4iter;
+    & h2 {
+      color: #fff;
+      opacity: 1;
+    }
+    & p {
+      color: #fff;
+      opacity: 0.7;
+    }
+  }
+}
+
+.centered {
+  text-align: center;
+  @media only screen and (max-width: $medium-width) {
+    text-align: left;
+  }
+}
+
+.xl {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.lg {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.med {
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.content.padded {
+  margin: 0 auto;
+  padding: 100px;
+  @media only screen and (max-width: $medium-width) {
+    padding: 0;
+  }
+}
+
+.wide {
+  width: 100%
+}
+
+section {
+  padding: 100px 0 90px;
+  @media only screen and (max-width: $medium-width) {
+    padding: 50px 0 40px;
+  }
+  @media only screen and (min-width: $medium-width + 1) {
+    &.shorter-desktop {
+      padding-bottom: 50px;
+    }
+  }
+  &.no-padding-bottom {
+    padding-bottom: 0;
+  }
+}
+
+.align-right {
+  text-align: right;
+}
+
+p.smaller {
+  font-size: 12px;
+}
+
+.margin-bottom {
+  @media only screen and (max-width: 870px) {
+    &-mobile:last-child, &-mobile {
+      margin-bottom: 40px;
+    }
+  }
+  &-sm:last-child,
+  &-sm {
+    margin-bottom: 40px;
+  }
+  &:last-child,
+  & {
+    margin-bottom: 60px;
+  }
+  @media only screen and (max-width: $medium-width) {
+    &:last-child.desktop, &.desktop {
+      margin-bottom: inherit;
+    }
+  }
+}
+
+.margin-top {
+  margin-top: 20px
+}
+
+.aligner {
+  display: table;
+  height: 100%;
+  width: 100%;
+  & .aligned {
+    vertical-align: middle;
+  }
+  &.fixed {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+section.next-nav {
+  padding: 50px 0;
+  color: #ddd;
+  @media only screen and (max-width: $medium-width) {
+    padding: 15px 0 25px;
+  }
+  & .next {
+    color: #757575;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 32px;
+    line-height: 1em;
+    text-align: right;
+    padding-right: 40px;
+    @media only screen and (max-width: $medium-width) {
+      font-size: 16px;
+      line-height: 28px;
+    }
+    & md-button {
+      font-size: 30px;
+      line-height: 40px;
+      font-weight: 300;
+      text-transform: initial;
+      text-align: right;
+      @media only screen and (max-width: $medium-width) {
+        font-size: 28px;
+        line-height: 34px;
+      }
+      &.content {
+        padding: 10px 0;
+      }
+      & core-icon {
+        position: absolute;
+        right: -40px;
+        top: 20px;
+      }
+      @media only screen and (max-width: $medium-width) {
+        & core-icon {
+          top: 15px;
+        }
+      }
+      &:hover core-icon {
+        right: -45px;
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: $medium-width) {
   .mobile-show {
     display: block;
@@ -147,6 +363,10 @@ h3 {
   .mobile-hide {
     display: none;
   }
+}
+
+.light-gray {
+  background: #fbfafb;
 }
 
 .clearfix {
@@ -165,19 +385,18 @@ h3 {
   }
 }
 
-section.hero {
-  background-color: #fbfafb;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: bottom;
-  padding: 65px 0 0;
-  position: relative;
-  min-height: 550px;
-  @media only screen and (max-width: 870px) {
-    min-height: 450px;
-    padding: 40px 0;
-    &.hero h1 {
-      font-size: 30px;
+section.request-an-invite {
+  & md-button {
+    font-weight: 500;
+  }
+  @media only screen and (max-width: $medium-width) {
+    padding: 60px 0;
+    & br {
+      display: none;
     }
   }
 }
+
+@include bold;
+@include red;
+@include bold-red;

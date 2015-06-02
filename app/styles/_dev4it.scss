@@ -15,8 +15,8 @@
 $lineHeight: 26px;
 $colorLayouts: #297ea9;
 $small-width: 400px;
-$medium-width: 870px;
-$large-width: 970px;
+$medium-width: $small-width + 490; // 890
+$large-width: $medium-width + 100; // 990
 $header-height: 70px;
 $header-height-media: 50px;
 $nav-top: $header-height;
@@ -26,7 +26,29 @@ $nav-right-media: $header-height-media * 0.33;
 $nav-height-media: 40px;
 $nav-width-media: 150px;
 $nav-translation: 310px;
-$dev4it-red: #E74A40;
+$dev4it-red: #F44336;
+$dev4it-client: #FFD740;
+$dev4it-4iter: #40C4FF;
+// logo #E74A40
+//RED Primary
+//100 #FFCDD2
+//500 #F44336 Pas mal
+//700 #D32F2F
+//YELLOW Secondary
+//A200 #FFFF00
+//Fallback
+//A100 #FFFF8D
+//A400 #FFEA00
+//AMBER Secondary Client
+//A200 #FFD740
+//Fallback
+//A100 #FFE57F
+//A400 #FFC400
+//LIGHT BLUE
+//A200 #40C4FF
+//Fallback
+//A100 #80D8FF
+//A400 #00B0FF
 $dev4it-gray: #6E7B7C;
 .clear-padding-top {
   padding-top: 0;
@@ -53,4 +75,23 @@ $dev4it-gray: #6E7B7C;
   content: "";
   display: table;
   clear: both
+}
+
+@mixin red {
+  & r {
+    color: $dev4it-red;
+  }
+}
+
+@mixin bold {
+  & b {
+    font-weight: 500;
+  }
+}
+
+@mixin bold_red {
+  & b-r {
+    font-weight: 500;
+    color: $dev4it-red;
+  }
 }

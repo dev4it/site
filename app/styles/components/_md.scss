@@ -1,7 +1,7 @@
 md-tab {
   color: black;
   opacity: 1;
-  padding: 30px 7px;
+  padding: 30px 13px;
   text-decoration: none;
   vertical-align: middle;
   text-transform: uppercase;
@@ -14,12 +14,9 @@ md-tab {
     height: 100%;
     margin: 0 10px;
     opacity: 0.6;
-    & red {
-      color: $dev4it-red;
-    }
-    @media only screen and (max-width: $large-width) {
+    /*@media only screen and (max-width: $large-width) {
       margin: 0 5px;
-    }
+    }*/
   }
   &:hover {
     background: #F5F5F5;
@@ -66,27 +63,23 @@ md-button {
   }
   &.inline {
     min-width: 0;
-    margin: 0
+    margin: 0;
   }
   &.inverted {
     background-color: #fff;
-    color: #0F9D58
+    color: $dev4it-red;
   }
   &.arrowed {
     padding-left: 0;
     padding-right: 0;
-    font-weight: 400
+    font-weight: 400;
   }
   &.standard-case {
-    text-transform: none
+    text-transform: none;
   }
   & i {
     opacity: 0.6;
-    vertical-align: text-bottom;
     color: $dev4it-gray;
-    &.s36 {
-      font-size: 36px;
-    }
   }
   &:hover i {
     opacity: 1 !important;
@@ -116,5 +109,28 @@ md-icon-button {
   &:active {
     background: $dev4it-red;
     border-radius: 50%;
+  }
+}
+
+md-fab {
+  display: inline-block;
+  padding: -10px;
+  animation: grow ease-out .5s;
+  color: $dev4it-red;
+  &.white {
+    color: #fff;
+  }
+}
+
+md-fab,
+md-button {
+  & i {
+    vertical-align: text-bottom;
+    &.s36 {
+      font-size: 36px;
+    }
+    &.s48 {
+      font-size: 48px;
+    }
   }
 }

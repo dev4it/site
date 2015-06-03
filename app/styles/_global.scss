@@ -240,9 +240,9 @@ section.hero {
 
 .content.padded {
   margin: 0 auto;
-  padding: 100px;
+  padding: 50px;
   @media only screen and (max-width: $medium-width) {
-    padding: 0;
+    padding: 10px;
   }
 }
 
@@ -402,4 +402,10 @@ section.request-an-invite {
 
 @include bold;
 @include red;
+@include blue;
+@include yellow;
+@include black;
 @include bold-red;
+@include bold-blue;
+@include bold-yellow;
+@include bold-black;

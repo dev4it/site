@@ -77,21 +77,81 @@ $dev4it-gray: #6E7B7C;
   clear: both
 }
 
-@mixin red {
-  & r {
-    color: $dev4it-red;
-  }
+$bold-font-weight: 500;
+@mixin _bold {
+  font-weight: $bold-font-weight;
 }
 
 @mixin bold {
   & b {
-    font-weight: 500;
+    @include _bold;
   }
 }
 
-@mixin bold_red {
+@mixin _red {
+  color: $dev4it-red;
+}
+
+@mixin red {
+  & r {
+    @include _red;
+  }
+}
+
+@mixin bold-red {
   & b-r {
-    font-weight: 500;
-    color: $dev4it-red;
+    @include _bold;
+    @include _red;
+  }
+}
+
+@mixin _blue {
+  color: $dev4it-blue;
+}
+
+@mixin blue {
+  & bl {
+    @include _blue;
+  }
+}
+
+@mixin bold-blue {
+  & b-bl {
+    @include _bold;
+    @include _blue;
+  }
+}
+
+@mixin _yellow {
+  color: $dev4it-yellow;
+}
+
+@mixin yellow {
+  & y {
+    @include _yellow;
+  }
+}
+
+@mixin bold-yellow {
+  & b-y {
+    @include _bold;
+    @include _yellow;
+  }
+}
+
+@mixin _black {
+  color: #000;
+}
+
+@mixin black {
+  & bk {
+    @include _black;
+  }
+}
+
+@mixin bold-black {
+  & b-bk {
+    @include _bold;
+    @include _black;
   }
 }

@@ -123,7 +123,6 @@ $gutter-width: 4%;
       margin-left: 0;
     }
   }
-
   &s.four {
     width: column-width(4);
   }
@@ -194,7 +193,7 @@ $gutter-width: 4%;
     }
   }*/
   
-  &:after {
+  &::after, &:after {
     @include clearfix;
   }
   /*@media (max-width: $medium-width) {

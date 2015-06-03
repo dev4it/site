@@ -42,6 +42,7 @@ header {
     /*@media only screen and (max-width: $large-width) {
       margin: 0 50px 0 20px;
     }*/
+    
     @media only screen and (max-width: $medium-width) {
       margin: 0;
     }
@@ -93,7 +94,10 @@ header {
     }
   }
   &+.wrap {
-    margin-top: 66px;
+    margin-top: 76px;
+    @media only screen and (max-width: $medium-width) {
+      margin-top: 66px;
+    }
   }
 }
 
@@ -123,13 +127,13 @@ header {
           font-size: 16px;
           font-weight: 500;
           opacity: .5;
-          &:active,
-          &.active {
-            opacity: 1;
-          }
           &:hover {
             background: rgba(0, 0, 0, 0.015);
             text-decoration: none;
+            opacity: 1;
+          }
+          &:active,
+          &.active {
             opacity: 1;
           }
         }

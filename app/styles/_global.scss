@@ -73,6 +73,9 @@ p {
   &.subtitle {
     font-size: 28px;
     line-height: 37px;
+    .hero &:last-child {
+      margin-bottom: inherit;
+    }
   }
   &:last-child {
     margin-bottom: 0;
@@ -136,7 +139,7 @@ section.hero {
   background-position: bottom;
   padding: 65px 0 0;
   position: relative;
-  min-height: 350px;
+  min-height: 600px;
   @media only screen and (max-width: $medium-width) {
     min-height: 250px;
     padding: 40px 0;
@@ -153,7 +156,7 @@ section.hero {
     width: 100%;
     z-index: 2;
     & .fab {
-      bottom: -30px;
+      bottom: -24px;
       margin: 0 auto;
       text-align: center;
       display: inline-block;
@@ -189,8 +192,8 @@ section.hero {
   &.teal {
     background: #03bcd4;
   }
-  &.client {
-    background: $dev4it-client;
+  &.yellow {
+    background: $dev4it-yellow;
     & h2 {
       color: #000;
       opacity: 0.8;
@@ -200,8 +203,8 @@ section.hero {
       opacity: 0.5;
     }
   }
-  &.collab {
-    background: $dev4it-4iter;
+  &.blue {
+    background: $dev4it-blue;
     & h2 {
       color: #fff;
       opacity: 1;
@@ -370,7 +373,7 @@ section.next-nav {
 }
 
 .clearfix {
-  &:after {
+  &::after, &:after {
     @include clearfix;
   }
   & .left {

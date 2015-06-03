@@ -69,6 +69,34 @@ md-button {
     background-color: #fff;
     color: $dev4it-red;
   }
+  &.blue {
+    background-color: $dev4it-blue;
+    color: #fff;
+    a & {
+      color: $dev4it-blue;
+    }
+    &.inverted {
+      background-color: #fff;
+      color: $dev4it-blue;
+      a & {
+        color: #fff;
+      }
+    }
+  }
+  &.yellow {
+    background-color: $dev4it-yellow;
+    color: #fff;
+    a & {
+      color: $dev4it-yellow;
+    }
+    &.inverted {
+      background-color: #fff;
+      color: $dev4it-yellow;
+      a & {
+        color: #fff;
+      }
+    }
+  }
   &.arrowed {
     padding-left: 0;
     padding-right: 0;
@@ -131,6 +159,9 @@ md-button {
     }
     &.s48 {
       font-size: 48px;
+    }
+    &.s72 {
+      font-size: 72px;
     }
   }
 }

@@ -9,28 +9,6 @@
 *
 **/
 
-section.hero {
-  @media only screen and (min-width: $medium-width + 1) {
-    .dev4why & {
-      min-height: 630px;
-    }
-    .dev4what & {
-      min-height: 250px;
-    }
-    .dev4you & {
-      min-height: 310px;
-    }
-  }
-  @media only screen and (max-width: $medium-width) {
-    .dev4what & {
-      min-height: 150px;
-    }
-    .dev4you & {
-      min-height: 300px;
-    }
-  }
-}
-
 .dev4why,
 .dev4what,
 .dev4you {

@@ -11,21 +11,26 @@
 /* CSS*/
 /* SASS variables*/
 
-// Defining baseline line height
-$lineHeight: 26px;
+
 $colorLayouts: #297ea9;
+
 $small-width: 400px;
 $medium-width: $small-width + 490; // 890
 $large-width: $medium-width + 100; // 990
-$header-height: 70px;
-$header-height-media: 50px;
-$nav-top: $header-height;
-$nav-height: $header-height-media;
-$nav-top-media: $header-height-media * 0.33;
-$nav-right-media: $header-height-media * 0.33;
-$nav-height-media: 40px;
-$nav-width-media: 150px;
-$nav-translation: 310px;
+
+$font-normal: 100;
+$font-bold: 300;
+$font-bolder: 500;
+
+// Defining font sizes
+$font-small: 0.8125em; //13px
+$font-base: 100%; //16px
+$font-medium: 1.25em; //20px
+$font-large: 1.625em; //26px
+$font-xlarge: 2.625em; //42px
+$font-xxlarge: 4.25em; //68px
+$font-huge: 6.875em; //110px
+
 $dev4it-red: #F44336;
 $dev4it-yellow: #FFD740;
 $dev4it-blue: #40C4FF;

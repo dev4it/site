@@ -10,7 +10,7 @@
 **/
 
 header {
-  font-weight: 500;
+  font-weight: $font-bolder;
   font-size: 14px;
   backface-visibility: hidden;
   transform: translateZ(0);
@@ -64,7 +64,7 @@ header {
   }
   & md-button {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: $font-bolder;
     line-height: 20px;
     text-align: left;
     &.call {
@@ -125,7 +125,7 @@ header {
           padding: 10px 30px;
           color: black;
           font-size: 16px;
-          font-weight: 500;
+          font-weight: $font-bolder;
           opacity: .5;
           &:hover {
             background: rgba(0, 0, 0, 0.015);

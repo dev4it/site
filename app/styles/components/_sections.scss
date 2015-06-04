@@ -1,0 +1,105 @@
+/**
+*
+* Home
+*
+* Dev4IT
+*
+* R/GA 2015
+* @author Guillaume Fesquet
+*
+**/
+
+section {
+  &.hero {
+    background-color: #fbfafb;
+    padding-top: 100px;
+    padding-bottom: 68px;
+    position: relative;
+    @media only screen and (max-width: $medium-width) {
+      padding-top: 60px;
+      padding-bottom: 33px;
+      & h1 {
+        font-size: 35px;
+      }
+    }
+  }
+  &.space {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    height: 48px;
+    & .fab-container {
+    background-color: #fbfafb;
+      bottom: 0;
+      max-width: 100%;
+      text-align: center;
+      width: 100%;
+      z-index: 2;
+      height: 22px;
+      & .fab {
+        //bottom: -22px;
+      }
+    }
+  }
+  &.request-an-invite {
+    & md-button {
+      font-weight: $font-bolder;
+    }
+    @media only screen and (max-width: $medium-width) {
+      padding: 60px 0;
+      & br {
+        display: none;
+      }
+    }
+  }
+  &.next-nav {
+    padding: 50px 0;
+    color: #ddd;
+    @media only screen and (max-width: $medium-width) {
+      padding: 15px 0 25px;
+    }
+    & .next {
+      color: #757575;
+      font-size: 18px;
+      font-weight: $font-bold;
+      line-height: 32px;
+      line-height: 1em;
+      text-align: right;
+      padding-right: 40px;
+      @media only screen and (max-width: $medium-width) {
+        font-size: 16px;
+        line-height: 28px;
+      }
+      & md-button {
+        font-size: 30px;
+        line-height: 40px;
+        font-weight: $font-bold;
+        text-transform: initial;
+        text-align: right;
+        @media only screen and (max-width: $medium-width) {
+          font-size: 28px;
+          line-height: 34px;
+        }
+        &.content {
+          padding: 10px 0;
+        }
+        & core-icon {
+          position: absolute;
+          right: -40px;
+          top: 20px;
+        }
+        @media only screen and (max-width: $medium-width) {
+          & core-icon {
+            top: 15px;
+          }
+        }
+        &:hover core-icon {
+          right: -45px;
+        }
+      }
+    }
+  }
+  &.no-padding-bottom {
+    padding-bottom: 0;
+  }
+}

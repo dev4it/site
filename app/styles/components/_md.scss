@@ -34,7 +34,7 @@ md-tab {
 }
 
 md-button {
-  font-weight: 300;
+  font-weight: $font-bold;
   font-size: 16px;
   padding-right: 10px;
   padding-left: 10px;
@@ -100,7 +100,7 @@ md-button {
   &.arrowed {
     padding-left: 0;
     padding-right: 0;
-    font-weight: 400;
+    font-weight: $font-bolder;
   }
   &.standard-case {
     text-transform: none;

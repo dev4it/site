@@ -39,4 +39,16 @@
     }
   ]);
 
+  dev4itApp.run(['$rootScope', '$location', '$anchorScroll',
+    function($rootScope, $location, $anchorScroll) {
+
+      $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+        $anchorScroll.yOffset = angular.element(document.querySelector('header'))[0].offsetHeight;
+
+        $anchorScroll();
+      });
+
+    }
+  ]);
+
 })(window.angular);

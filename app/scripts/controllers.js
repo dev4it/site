@@ -25,6 +25,9 @@
       $scope.toggle = function() {
         $scope.toggled = !$scope.toggled;
       };
+      $scope.resetToggle = function() {
+        $scope.toggled = false;
+      };
 
       $scope.isSelected = function(href) {
         return $location.path() === href;

@@ -22,6 +22,13 @@ section {
         font-size: 35px;
       }
     }
+    @media only screen and (max-width: $small-width) {
+      padding-top: 45px;
+      padding-bottom: 25px;
+      & h1 {
+        font-size: 25px;
+      }
+    }
   }
   &.space {
     padding: 0;
@@ -29,7 +36,7 @@ section {
     position: relative;
     height: 48px;
     & .fab-container {
-    background-color: #fbfafb;
+      background-color: #fbfafb;
       bottom: 0;
       max-width: 100%;
       text-align: center;
@@ -58,6 +65,9 @@ section {
     @media only screen and (max-width: $medium-width) {
       padding: 15px 0 25px;
     }
+    @media only screen and (max-width: $small-width) {
+      padding: 5px 0 15px;
+    }
     & .next {
       color: #757575;
       font-size: 18px;
@@ -69,6 +79,12 @@ section {
       @media only screen and (max-width: $medium-width) {
         font-size: 16px;
         line-height: 28px;
+        padding-right: 20px;
+      }
+      @media only screen and (max-width: $small-width) {
+        font-size: 14px;
+        line-height: 24px;
+        padding-right: 10px;
       }
       & md-button {
         font-size: 30px;

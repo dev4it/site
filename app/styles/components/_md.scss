@@ -9,14 +9,14 @@ md-tab {
   position: relative;
   overflow: hidden;
   display: inline-block;
+    @media only screen and (min-width: $medium-width + 100) {
+      padding: 30px 15px;
+    }
   & .content {
     transition: opacity .1s cubic-bezier(0.4, 0.0, 1, 1), color .1s cubic-bezier(0.4, 0.0, 1, 1);
     height: 100%;
     margin: 0 10px;
     opacity: 0.6;
-    /*@media only screen and (max-width: $large-width) {
-      margin: 0 5px;
-    }*/
   }
   &:hover {
     background: #F5F5F5;

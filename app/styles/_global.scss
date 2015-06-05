@@ -56,23 +56,40 @@ ul li {
     font-size: 16px;
     line-height: 28px;
   }
+  /*@media only screen and (max-width: $small-width) {
+    font-size: 12px;
+    line-height: 24px;
+  }*/
 }
 
 p {
   color: #757575;
-  font-size: 18px;
   font-weight: $font-bold;
+  font-size: 18px;
   line-height: 32px;
   @media only screen and (max-width: $medium-width) {
     font-size: 16px;
     line-height: 28px;
   }
+  /*@media only screen and (max-width: $small-width) {
+    font-size: 14px;
+    line-height: 24px;
+  }*/
+  
   & a {
     font-weight: $font-bold;
   }
   &.subtitle {
-    font-size: 28px;
+    font-size: 30px;
     line-height: 37px;
+    @media only screen and (max-width: $medium-width) {
+      font-size: 25px;
+      line-height: 32px;
+    }
+    @media only screen and (max-width: $small-width) {
+      font-size: 20px;
+      line-height: 27px;
+    }
     .hero &:last-child {
       margin-bottom: inherit;
     }
@@ -86,12 +103,14 @@ h1 {
   color: $dev4it-red;
   font-weight: $font-normal;
   font-size: 45px;
+  //font-size: 59px;
   @media only screen and (max-width: $medium-width) {
-    line-height: 40px;
-    font-size: 30px;
+    font-size: 43px;
+    //line-height: 55px;
   }
   @media only screen and (max-width: $small-width) {
-    font-size: 24px !important;
+    font-size: 41px;
+    //line-height: 51px;
   }
 }
 
@@ -106,11 +125,16 @@ h1 {
 
 h2 {
   color: #212121;
-  font-size: 43px;
   margin-bottom: 20px;
+  font-size: 43px;
+  line-height: 57px;
   @media only screen and (max-width: $medium-width) {
-    font-size: 30px;
-    line-height: 40px;
+    font-size: 33px;
+    line-height: 47px;
+  }
+  @media only screen and (max-width: $small-width) {
+    font-size: 23px;
+    line-height: 37px;
   }
 }
 
@@ -127,6 +151,9 @@ h3 {
   }
   @media only screen and (max-width: $medium-width) {
     padding: 0 40px;
+  }
+  @media only screen and (max-width: $small-width) {
+    padding: 0 20px;
   }
 }
 

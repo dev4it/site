@@ -37,11 +37,11 @@ header {
     transition: all .25s ease;
     display: inline-block;
     max-width: 120px;
-    margin: 0 80px 0 20px;
+    margin: 0 60px 0 20px;
     vertical-align: middle;
-    /*@media only screen and (max-width: $large-width) {
-      margin: 0 50px 0 20px;
-    }*/
+    @media only screen and (min-width: $large-width) {
+      margin: 0 80px 0 20px;
+    }
     
     @media only screen and (max-width: $medium-width) {
       margin: 0;

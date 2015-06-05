@@ -105,12 +105,12 @@ $gutter-width: 4%;
   }
   &s.three {
     width: column-width(4);
-    @media (max-width: $medium-width) {
+    /*@media (max-width: $medium-width) {
       width: column-width(6);
       &:last-child {
         margin-left: 0;
       }
-    }
+    }*/
     @media (max-width: $medium-width - 100) {
       width: 100%;
       margin-left: 0;

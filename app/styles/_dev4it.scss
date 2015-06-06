@@ -18,6 +18,11 @@ $small-width: 400px;
 $medium-width: $small-width + 470;
 $large-width: $medium-width + 100;
 
+// Defining font family
+$font-default: 'Roboto';
+$font-highlight: 'Roboto';
+$font-icon: "icons";
+
 $font-normal: 100;
 $font-bold: 300;
 $font-bolder: 500;

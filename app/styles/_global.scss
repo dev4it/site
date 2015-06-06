@@ -18,7 +18,7 @@ body {
   background-color: #fbfafb;
   margin: 0;
   padding: 0;
-  font-family: $fontDefault;
+  font-family: $font-default;
   overflow-x: hidden;
 }
 
@@ -96,6 +96,9 @@ p {
   }
   &:last-child {
     margin-bottom: 0;
+  }
+  & it {
+    font-style: italic;
   }
 }
 

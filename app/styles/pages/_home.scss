@@ -42,6 +42,11 @@
       margin-left: 10%;
       margin-right: 10%;
     }
+    & .logo-min {
+      max-width: 40%;
+      margin-left: 30%;
+      margin-right: 30%;
+    }
     & md-button {
       color: #757575;
       font-size: 18px;
@@ -51,6 +56,21 @@
       @media only screen and (max-width: $medium-width) {
         font-size: 16px;
         line-height: 28px;
+      }
+    }
+    & .animatic {
+      padding-top: 25px;
+      margin-bottom: 30px;
+      max-width: 100%;
+      text-align: center;
+      & d {
+        display: inline-block;
+        color: $dev4it-red;
+        font-weight: $font-normal;
+        font-size: 22px;
+        @media only screen and (max-width: $large-width) {
+          font-size: 20px;
+        }
       }
     }
   }
@@ -78,21 +98,6 @@
       }
       &.link {
         margin-bottom: 0;
-      }
-    }
-  }
-  & .animatic {
-    padding-top: 25px;
-    margin-bottom: 30px;
-    max-width: 100%;
-    text-align: center;
-    & d {
-      display: inline-block;
-      color: $dev4it-red;
-      font-weight: $font-normal;
-      font-size: 22px;
-      @media only screen and (max-width: $large-width) {
-        font-size: 20px;
       }
     }
   }

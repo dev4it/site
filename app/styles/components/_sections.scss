@@ -48,7 +48,7 @@ section {
       }
     }
   }
-  &.request-an-invite {
+  &.contact {
     & md-button {
       font-weight: $font-bolder;
     }
@@ -57,6 +57,9 @@ section {
       & br {
         display: none;
       }
+    }
+    @media only screen and (max-width: $small-width) {
+      padding: 30px 0;
     }
   }
   &.next-nav {

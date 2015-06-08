@@ -68,34 +68,18 @@ md-button {
   &.inverted {
     background-color: #fff;
     color: $dev4it-red;
-  }
-  &.blue {
-    background-color: $dev4it-blue;
-    color: #fff;
-    a & {
+    .blue & {
       color: $dev4it-blue;
     }
-    &.inverted {
-      background-color: #fff;
-      color: $dev4it-blue;
-      a & {
-        color: #fff;
-      }
+    .yellow & {
+      color: $dev4it-yellow;
     }
   }
-  &.yellow {
-    background-color: $dev4it-yellow;
+  .blue &, .blue & i {
     color: #fff;
-    a & {
-      color: $dev4it-yellow;
-    }
-    &.inverted {
-      background-color: #fff;
-      color: $dev4it-yellow;
-      a & {
-        color: #fff;
-      }
-    }
+  }
+  .yellow & {
+    color: $dev4it-gray;
   }
   &.arrowed {
     padding-left: 0;
@@ -111,8 +95,10 @@ md-button {
   }
   &:hover i {
     opacity: 1 !important;
-    padding-left: 5px;
     color: $dev4it-red;
+  }
+  &:hover i.hover {
+    padding-left: 5px;
   }
 }
 

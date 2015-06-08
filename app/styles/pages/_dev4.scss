@@ -11,7 +11,8 @@
 
 .dev4why,
 .dev4what,
-.dev4you {
+.dev4you,
+.contact {
   & h1 {
     color: $dev4it-red;
     max-width: 750px;
@@ -22,20 +23,27 @@
       max-width: 1000px;
     }
     & .content.padded {
+      padding: 80px 20px;
       @media only screen and (max-width: $medium-width) {
         padding: 20px;
       }
-      @media only screen and (min-width: $medium-width + 1) {
-        padding: 80px 20px;
+      @media only screen and (max-width: $small-width) {
+        padding: 10px;
       }
     }
   }
-  & .coverage-check {
+  & .highlight {
     background-color: rgba(255, 255, 255, 0.2);
     padding: 40px;
     margin: -40px;
-    @media only screen and (min-width: $medium-width + 1) {
-      margin-right: 0px;
+    margin-right: 0;
+    @media only screen and (max-width: $medium-width) {
+      padding: 20px;
+      margin: -20px;
+    }
+    @media only screen and (max-width: $small-width) {
+      padding: 10px;
+      margin: -10px;
     }
   }
 }

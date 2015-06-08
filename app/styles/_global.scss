@@ -32,7 +32,7 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 img {
@@ -153,7 +153,7 @@ h3 {
     max-width: 800px;
   }
   @media only screen and (max-width: $medium-width) {
-    padding: 0 40px;
+    padding: 0 20px;
   }
   @media only screen and (max-width: $small-width) {
     padding: 0 10px;
@@ -230,6 +230,7 @@ h3 {
 .lg {
   margin: 0 auto;
   max-width: 600px;
+  text-align: left;
 }
 
 .med {
@@ -291,6 +292,10 @@ p.smaller {
   margin-top: 20px
 }
 
+.margin {
+  margin: 20px
+}
+
 .aligner {
   display: table;
   height: 100%;
@@ -313,6 +318,13 @@ p.smaller {
   }
 }
 
+.inter-show {
+  display: none;
+  @media only screen and (min-width: $medium-width - 100) and (max-width: $medium-width) {
+    display: block;
+  }
+}
+
 .light-gray {
   background: #fbfafb;
 }
@@ -331,6 +343,10 @@ p.smaller {
     overflow: hidden;
     width: auto;
   }
+}
+
+.no-margin {
+  margin: 0;
 }
 
 @include bold;

@@ -213,6 +213,13 @@ h3 {
       opacity: 0.7;
     }
   }
+  &.gray {
+    background: $dev4it-gray;
+    & p {
+      color: #fff;
+      opacity: 0.7;
+    }
+  }
 }
 
 .centered {
@@ -309,19 +316,17 @@ p.smaller {
   }
 }
 
-@media only screen and (max-width: $medium-width) {
-  .mobile-show {
+.mobile-show {
+  display: none;
+  @media only screen and (max-width: $medium-width) {
     display: block;
-  }
-  .mobile-hide {
-    display: none;
   }
 }
 
-.inter-show {
-  display: none;
-  @media only screen and (min-width: $medium-width - 100) and (max-width: $medium-width) {
-    display: block;
+.mobile-hide {
+  display: block;
+  @media only screen and (max-width: $medium-width) {
+    display: none;
   }
 }
 
@@ -347,6 +352,14 @@ p.smaller {
 
 .no-margin {
   margin: 0;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.padding-left {
+  padding-left: 50px;
 }
 
 @include bold;

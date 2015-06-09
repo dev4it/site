@@ -9,9 +9,9 @@ md-tab {
   position: relative;
   overflow: hidden;
   display: inline-block;
-    @media only screen and (min-width: $medium-width + 100) {
-      padding: 30px 15px;
-    }
+  @media only screen and (min-width: $medium-width + 100) {
+    padding: 30px 15px;
+  }
   & .content {
     transition: opacity .1s cubic-bezier(0.4, 0.0, 1, 1), color .1s cubic-bezier(0.4, 0.0, 1, 1);
     height: 100%;
@@ -75,8 +75,15 @@ md-button {
       color: $dev4it-yellow;
     }
   }
-  .blue &, .blue & i {
+  .blue &,
+  .blue & i,
+  {
     color: #fff;
+  }
+  &.blue,
+  &.blue i,
+  {
+    color: $dev4it-blue;
   }
   .yellow & {
     color: $dev4it-gray;
@@ -142,12 +149,26 @@ md-button {
     vertical-align: text-bottom;
     &.s36 {
       font-size: 36px;
+      .about & {
+      @media only screen and (max-width: $medium-width) {
+        font-size: 34px;
+      }
+    }
     }
     &.s48 {
       font-size: 48px;
     }
     &.s72 {
       font-size: 72px;
+    }
+  }
+  & img {
+    &.about {
+      height: 26px;
+      padding-bottom: 2px;
+      /*@media only screen and (max-width: $medium-width) {
+        padding-bottom: 3px;
+      }*/
     }
   }
 }

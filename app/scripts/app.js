@@ -9,8 +9,8 @@
     'dev4itCtrls'
   ]);
 
-  dev4itApp.config(['$routeProvider',
-    function($routeProvider) {
+  dev4itApp.config(['$routeProvider', '$locationProvider',
+    function($routeProvider, $locationProvider) {
       $routeProvider.
       when('/', {
         templateUrl: 'pages/home.html'
@@ -36,15 +36,26 @@
       otherwise({
         redirectTo: '/'
       });
+
+      // use the HTML5 History API
+      $locationProvider.html5Mode(true);
     }
   ]);
 
-  dev4itApp.run(['$rootScope', '$location', '$anchorScroll',
-    function($rootScope, $location, $anchorScroll) {
+  dev4itApp.run(['$rootScope', '$location', '$anchorScroll', '$window',
+    function($rootScope, $location, $anchorScroll, $window) {
 
       $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
-        $anchorScroll.yOffset = angular.element(document.querySelector('header'))[0].offsetHeight;
 
+
+        console.log($location);
+        if ($window.ga) {
+          $window.ga('send', 'pageview', {
+            page: $location.url()
+          });
+        }
+
+        $anchorScroll.yOffset = angular.element(document.querySelector('header'))[0].offsetHeight;
         $anchorScroll();
       });
 

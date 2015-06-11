@@ -42,16 +42,29 @@ header {
     @media only screen and (min-width: $large-width) {
       margin: 0 80px 0 20px;
     }
-    
     @media only screen and (max-width: $medium-width) {
       margin: 0;
+    }
+    & span {
+      &.s-hide {
+        display: inline-block;
+        @media only screen and (max-width: $small-width) {
+          display: none;
+        }
+      }
+      &.s-show {
+        display: none;
+        @media only screen and (max-width: $small-width) {
+          display: inline-block;
+        }
+      }
     }
     @media only screen and (max-width: $small-width) {
       max-width: 90px;
       margin-top: 6px;
       margin-bottom: 6px;
     }
-    & img {
+    & .img {
       max-width: 100%;
     }
   }

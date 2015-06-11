@@ -147,28 +147,17 @@ md-fab,
 md-button {
   & i {
     vertical-align: text-bottom;
+    &.s24 {
+      font-size: 24px;
+    }
     &.s36 {
       font-size: 36px;
-      .about & {
-      @media only screen and (max-width: $medium-width) {
-        font-size: 34px;
-      }
-    }
     }
     &.s48 {
       font-size: 48px;
     }
     &.s72 {
       font-size: 72px;
-    }
-  }
-  & img {
-    &.about {
-      height: 26px;
-      padding-bottom: 2px;
-      /*@media only screen and (max-width: $medium-width) {
-        padding-bottom: 3px;
-      }*/
     }
   }
 }

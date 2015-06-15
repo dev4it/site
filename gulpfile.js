@@ -36,6 +36,9 @@ var LOG_PREFIX = 'SD4';
 var CACHE_ID = 'site-dev4it.1';
 var BUILD = 'build';
 
+var merge = require('merge-stream');
+var spritesmith = require('gulp.spritesmith');
+
 // Lint JavaScript
 gulp.task('jshint', function() {
   return gulp.src([
@@ -71,7 +74,7 @@ gulp.task('scripts', function() {
 });
 
 // Compile and automatically prefix stylesheets
-gulp.task('styles', function() {
+gulp.task('styles', ['sprite'], function() {
 
   var AUTOPREFIXER_BROWSERS = [
     'ie >= 9',
@@ -145,7 +148,7 @@ gulp.task('html', function() {
   .pipe($.if('*.css', $.csso()))
 
   .pipe(assets.restore())
-  .pipe($.useref())
+    .pipe($.useref())
 
   // Minify any HTML
   .pipe($.if('*.html', $.minifyHtml({
@@ -164,7 +167,8 @@ gulp.task('html', function() {
 // Optimize images
 gulp.task('images', function() {
   return gulp.src([
-    'app/images/**/*'
+    'app/images/**/*',
+    '.tmp/images/**/*'
   ])
 
   .pipe($.imagemin({
@@ -176,6 +180,30 @@ gulp.task('images', function() {
     .pipe($.size({
       title: 'images'
     }));
+});
+
+// Generate our spritesheet 
+gulp.task('sprite', function() {
+  // Generate our spritesheet
+  var spriteData = gulp.src('app/images/sprites/*.png').pipe(spritesmith({
+    imgName: 'sprite.png',
+    imgPath: '../images/sprite.png',
+    cssName: 'sprite.css',
+    cssTemplate: 'handlebarsStr.css.handlebars',
+    padding: 1
+  }));
+
+  // Pipe image stream through image optimizer and onto disk
+  var imgStream = spriteData.img
+    .pipe($.imagemin())
+    .pipe(gulp.dest('.tmp/images'));
+
+  // Pipe CSS stream through CSS optimizer and onto disk
+  var cssStream = spriteData.css
+    .pipe(gulp.dest('.tmp/styles'));
+
+  // Return a merged stream to handle both `end` events
+  return merge(imgStream, cssStream);
 });
 
 // Copy web fonts to BUILD
@@ -327,9 +355,10 @@ gulp.task('sw', function(callback) {
         }
         callback();
       });
+
     gulp.src('.tmp/service-worker.js')
-    .pipe($.uglify())
-    .pipe(gulp.dest(BUILD));
+      .pipe($.uglify())
+      .pipe(gulp.dest(BUILD));
   });
 });
 

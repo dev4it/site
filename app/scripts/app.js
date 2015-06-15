@@ -47,8 +47,6 @@
 
       $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
 
-
-        console.log($location);
         if ($window.ga) {
           $window.ga('send', 'pageview', {
             page: $location.url()

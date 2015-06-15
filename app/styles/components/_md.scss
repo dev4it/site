@@ -131,6 +131,9 @@ md-icon-button {
     background: $dev4it-red;
     border-radius: 50%;
   }
+  @media only screen and (max-width: $small-width - 50) {
+    padding-right: 0;
+  }
 }
 
 md-fab {

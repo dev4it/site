@@ -84,9 +84,9 @@ header {
       background-color: $dev4it-red;
       color: #fff;
       margin-left: 30px;
-      /*@media only screen and (max-width: $large-width) {
-        margin-left: 10px;
-      }*/
+      @media only screen and (max-width: $small-width - 50) {
+        margin-left: 0;
+      }
     }
   }
   & a.tab {
@@ -95,14 +95,19 @@ header {
     vertical-align: middle;
     cursor: pointer;
   }
-  @media only screen and (max-width: $medium-width) {
-    & .right {
+  & .right {
+    @media only screen and (max-width: $medium-width) {
       margin-top: 3px;
       & md-button {
         margin-right: 10px;
       }
       & md-icon-button {
         float: right;
+      }
+    }
+    @media only screen and (max-width: $small-width - 50) {
+      & md-button {
+        margin-right: 0;
       }
     }
   }

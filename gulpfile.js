@@ -168,7 +168,8 @@ gulp.task('html', function() {
 gulp.task('images', function() {
   return gulp.src([
     'app/images/**/*',
-    '.tmp/images/**/*'
+    '.tmp/images/**/*',
+    '!app/sprites/**/*'
   ])
 
   .pipe($.imagemin({
@@ -185,7 +186,7 @@ gulp.task('images', function() {
 // Generate our spritesheet 
 gulp.task('sprite', function() {
   // Generate our spritesheet
-  var spriteData = gulp.src('app/images/sprites/*.png').pipe(spritesmith({
+  var spriteData = gulp.src('app/sprites/*.png').pipe(spritesmith({
     imgName: 'sprite.png',
     imgPath: '../images/sprite.png',
     cssName: 'sprite.css',

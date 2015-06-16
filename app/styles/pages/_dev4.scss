@@ -47,3 +47,12 @@
     }
   }
 }
+
+.about {
+  & .align {
+    margin-bottom: 2px;
+    @media only screen and (max-width: $medium-width) {
+      margin-bottom: 3px;
+    }
+  }
+}

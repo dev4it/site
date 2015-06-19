@@ -851,7 +851,7 @@ FileETag None
 
   # CSS
 
-    ExpiresByType text/css                              "access plus 1 year"
+    ExpiresByType text/css                              "access plus 1 week"
 
 
   # Data interchange

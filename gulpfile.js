@@ -188,7 +188,7 @@ gulp.task('sprite', function() {
   // Generate our spritesheet
   var spriteData = gulp.src('app/sprites/*.png').pipe(spritesmith({
     imgName: 'sprite.png',
-    imgPath: '../images/sprite.png',
+    imgPath: '/images/sprite.png',
     cssName: 'sprite.css',
     cssTemplate: 'handlebarsStr.css.handlebars',
     padding: 1

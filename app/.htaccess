@@ -847,7 +847,7 @@ FileETag None
 <IfModule mod_expires.c>
 
     ExpiresActive on
-    ExpiresDefault                                      "access plus 1 month"
+    ExpiresDefault                                      "access plus 1 week"
 
   # CSS
 

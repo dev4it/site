@@ -2,15 +2,16 @@
 <html lang="fr" class="no-touch" itemscope itemtype="http://schema.org/Organization" ng-app="dev4itApp">
 
 <head>
+  <!-- <base href="/">
+ -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  <!-- <meta name="fragment" content="!"> -->
 
   <title>DEV4IT</title>
   <meta name="description" content="DEV4IT est une Société de Conseil dédiée au monde du #Digital. Nous regroupons une communauté d’Ingénieurs passionnés par les technologies, les nouveaux usages et ayant pour valeurs le succès, le plaisir, la réalisation de soi et la créativité.">
 
-  <base href="/">
-  <meta name="fragment" content="!">
 
   <!-- Web Application Manifest -->
   <link rel="manifest" href="manifest.json">
@@ -44,7 +45,7 @@
   <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> -->
 
-  <!-- build:css(.tmp/) css/build.css -->
+  <!-- build:css(.tmp/) css/build-190615.css -->
   <link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/sprite.css">
@@ -61,10 +62,10 @@
 
       <div class="clearfix mobile-hide">
         <div class="right alt">
-          <a class="tab" href="/about">
+          <a class="tab" href="#/about">
             <md-button class="plain">A propos</md-button>
           </a>
-          <a class="tab" href="/contact" ng-click="resetToggle()">
+          <a class="tab" href="#/contact" ng-click="resetToggle()">
             <md-button class="call shadow content">
               NOUS CONTACTER
             </md-button>
@@ -72,19 +73,19 @@
         </div>
         <div class="fill">
           <div class="logo" ng-click="resetToggle()">
-            <a href="/"><span class="sprite sp-D4-DEV4IT"></span></a>
+            <a href="#/"><img src="images/D4-DEV4IT.png"></a>
           </div>
-          <a class="tab" href="/dev4why">
+          <a class="tab" href="#/dev4why">
             <md-tab ng-class="{active: isSelected('/dev4why')}">
               <div class="content">Dev<r>4</r>Why</div>
             </md-tab>
           </a>
-          <a class="tab" href="/dev4what">
+          <a class="tab" href="#/dev4what">
             <md-tab ng-class="{active: isSelected('/dev4what')}">
               <div class="content">Dev<r>4</r>What</div>
             </md-tab>
           </a>
-          <a class="tab" href="/dev4you">
+          <a class="tab" href="#/dev4you">
             <md-tab ng-class="{active: isSelected('/dev4you')}">
               <div class="content">Dev<r>4</r>You</div>
             </md-tab>
@@ -96,14 +97,13 @@
         <div class="clearfix">
           <div class="left">
             <div class="logo" ng-click="resetToggle()">
-              <a href="/">
-                <span class="sprite sp-D4-DEV4IT s-hide"></span>
-                <span class="sprite sp-D4-DEV4IT-small s-show"></span>
+              <a href="#/">
+                <img src="images/D4-DEV4IT.png">
               </a>
             </div>
           </div>
           <div class="right">
-            <a class="tab" href="/contact" ng-click="resetToggle()">
+            <a class="tab" href="#/contact" ng-click="resetToggle()">
               <md-button class="call shadow content">
                 NOUS CONTACTER
               </md-button>
@@ -117,10 +117,10 @@
 
       <div class="drawer hidden mobile-show" ng-class="{toggled: isToggled()}">
         <ul class="nav">
-          <li><a href="/dev4why" ng-class="{active: isSelected('/dev4why')}" ng-click="toggle()">Dev<r>4</r>Why</a></li>
-          <li><a href="/dev4what" ng-class="{active: isSelected('/dev4what')}" ng-click="toggle()">Dev<r>4</r>What</a></li>
-          <li><a href="/dev4you" ng-class="{active: isSelected('/dev4you')}" ng-click="toggle()">Dev<r>4</r>You</a></li>
-          <li><a href="/about" ng-class="{active: isSelected('/about')}" ng-click="toggle()">A propos</a></li>
+          <li><a href="#/dev4why" ng-class="{active: isSelected('/dev4why')}" ng-click="toggle()">Dev<r>4</r>Why</a></li>
+          <li><a href="#/dev4what" ng-class="{active: isSelected('/dev4what')}" ng-click="toggle()">Dev<r>4</r>What</a></li>
+          <li><a href="#/dev4you" ng-class="{active: isSelected('/dev4you')}" ng-click="toggle()">Dev<r>4</r>You</a></li>
+          <li><a href="#/about" ng-class="{active: isSelected('/about')}" ng-click="toggle()">A propos</a></li>
         </ul>
       </div>
 
@@ -135,11 +135,6 @@
         <div class="row reversed">
           <div class="seven columns">
             <div class="social">
-              <!-- <a href="#"><img src="images/social/google.png"></a>
-              <a target="_blank" href="//www.viadeo.com/fr/company/dev4it"><img src="images/social/viadeo.png"></a>
-              <a target="_blank" href="//www.linkedin.com/company/dev4it"><img src="images/social/linkedin.png"></a>
-              <a target="_blank" href="//twitter.com/DEV_4IT"><img src="images/social/twitter.png"></a>
-              <a target="_blank" href="//www.facebook.com/pages/DEV4IT/630760263720393"><img src="images/social/facebook.png"></a> -->
               <a href="#"><span class="sprite sp-google"></span></a>
               <a target="_blank" href="//www.viadeo.com/fr/company/dev4it"><span class="sprite sp-viadeo"></span></a>
               <a target="_blank" href="//www.linkedin.com/company/dev4it"><span class="sprite sp-linkedin"></span></a>
@@ -148,7 +143,6 @@
             </div>
           </div>
           <div class="five columns">
-            <!-- <div class="logo"><img src="images/logo/DEV4IT.w.u.png"></div> -->
             <div class="logo"><span class="sprite sp-DEV4IT"></span></div>
           </div>
         </div>
@@ -156,25 +150,25 @@
           <div class="four columns block">
             <div class="title">Pourquoi DEV<b>4</b>IT ?</div>
             <ul>
-              <li><a href="/dev4why#notre-vision">Notre vision</a>
-                <li><a href="/dev4why#nos-valeurs">Nos valeurs</a>
-                  <li><a href="/dev4why#pay-what-you-want">Le #PayWhatYouWant</a>
+              <li><a href="#/dev4why#notre-vision" ng-click="goto('notre-vision')">Notre vision</a>
+                <li><a href="#/dev4why#nos-valeurs" ng-click="goto('nos-valeurs')">Nos valeurs</a>
+                  <li><a href="#/dev4why#pay-what-you-want" ng-click="goto('pay-what-you-want')">Le #PayWhatYouWant</a>
             </ul>
           </div>
           <div class="four columns block">
             <div class="title">DEV<b>4</b>IT pour quoi faire ?</div>
             <ul>
-              <li><a href="/dev4what#accompagnement-projet">L'accompagnement de nos clients</a>
-                <li><a href="/dev4what#poc-factory">La POC Factory</a>
-                  <li><a href="/dev4what#conseil-nouveaux-usages">Le conseil</a>
+              <li><a href="#/dev4what#accompagnement-projet" ng-click="goto('accompagnement-projet')">L'accompagnement de nos clients</a>
+                <li><a href="#/dev4what#poc-factory" ng-click="goto('poc-factory')">La POC Factory</a>
+                  <li><a href="#/dev4what#conseil-nouveaux-usages" ng-click="goto('conseil-nouveaux-usages')">Le conseil</a>
             </ul>
           </div>
           <div class="four columns block">
             <div class="title">DEV<b>4</b>IT est pour vous ?</div>
             <ul>
-              <li><a href="/dev4you/#management-innovant">Un management innovant</a>
-                <li><a href="/dev4you/#philosophie-differente">Une philosophie différente</a>
-                  <li><a href="/dev4you/#evolution-permanente">Une évolution permanente</a>
+              <li><a href="#/dev4you/#management-innovant" ng-click="goto('management-innovant')">Un management innovant</a>
+                <li><a href="#/dev4you/#philosophie-differente" ng-click="goto('philosophie-differente')">Une philosophie différente</a>
+                  <li><a href="#/dev4you/#evolution-permanente" ng-click="goto('evolution-permanente')">Une évolution permanente</a>
             </ul>
           </div>
         </div>
@@ -189,7 +183,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular-route.min.js"></script>
 
-  <!-- build:js(app/) js/build.js -->
+  <!-- build:js(app/) js/build-190615.js -->
   <script src="scripts/app.js"></script>
   <script src="scripts/controllers.js"></script>
   <!-- endbuild -->

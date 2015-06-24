@@ -1,46 +1,34 @@
-/**
- *
- *  Web Starter Kit
- *  Copyright 2015 Google Inc. All rights reserved.
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License
- *
- */
+// This gulpfile makes use of new JavaScript features.
+// Babel handles this without us having to do anything. It just works.
+// You can read more about the new JavaScript features here:
+// https://babeljs.io/docs/learn-es2015/
 
-'use strict';
+import fs from 'fs';
+import path from 'path';
+import gulp from 'gulp';
+import del from 'del';
+import runSequence from 'run-sequence';
+import browserSync from 'browser-sync';
+import swPrecache from 'sw-precache';
+import gulpLoadPlugins from 'gulp-load-plugins';
+import {
+  output as pagespeed
+}
+from 'psi';
+import pkg from './package.json';
 
-// Include Gulp & tools we'll use
-var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
-var del = require('del');
-var runSequence = require('run-sequence');
-var browserSync = require('browser-sync');
-var pagespeed = require('psi');
-var reload = browserSync.reload;
-var swPrecache = require('sw-precache');
-var fs = require('fs');
-var path = require('path');
-var packageJson = require('./package.json');
+import sprite from 'gulp.spritesmith';
+import merge from 'merge-stream';
 
-var LOG_PREFIX = 'SD4';
-var CACHE_ID = 'site-dev4it.1';
-var BUILD = 'build';
+const $ = gulpLoadPlugins();
+const reload = browserSync.reload;
 
-var merge = require('merge-stream');
-var spritesmith = require('gulp.spritesmith');
+const LOG_PREFIX = 'SD4';
+const CACHE_ID = 'site-dev4it.1';
+const BUILD = 'build';
 
 // Lint JavaScript
-gulp.task('jshint', function() {
+gulp.task('jshint', () => {
   return gulp.src([
     'app/scripts/**/*.js'
   ])
@@ -56,7 +44,7 @@ gulp.task('jshint', function() {
 });
 
 // Concatenate and minify JavaScript
-gulp.task('scripts', function() {
+gulp.task('scripts', () => {
   return gulp.src([
     'app/**/scripts/**/*.js',
     'app/**/*angular*/angular*.js',
@@ -74,9 +62,9 @@ gulp.task('scripts', function() {
 });
 
 // Compile and automatically prefix stylesheets
-gulp.task('styles', ['sprite'], function() {
+gulp.task('styles', ['sprite'], () => {
 
-  var AUTOPREFIXER_BROWSERS = [
+  const AUTOPREFIXER_BROWSERS = [
     'ie >= 9',
     'ie_mob >= 10',
     'ff >= 30',
@@ -114,11 +102,11 @@ gulp.task('styles', ['sprite'], function() {
     .pipe($.size({
       title: 'styles'
     }));
-})
+});
 
 // Scan your HTML for assets & optimize them
-gulp.task('html', function() {
-  var assets = $.useref.assets({
+gulp.task('html', () => {
+  const assets = $.useref.assets({
     searchPath: '{.tmp,app}'
   });
 
@@ -145,7 +133,7 @@ gulp.task('html', function() {
   })))
 
   // Concatenate and minify styles
-  .pipe($.if('*.css', $.csso()))
+  .pipe($.if('*.css', $.minifyCss()))
 
   .pipe(assets.restore())
     .pipe($.useref())
@@ -165,7 +153,7 @@ gulp.task('html', function() {
 });
 
 // Optimize images
-gulp.task('images', function() {
+gulp.task('images', () => {
   return gulp.src([
     'app/images/**/*',
     '.tmp/images/**/*',
@@ -184,9 +172,9 @@ gulp.task('images', function() {
 });
 
 // Generate our spritesheet 
-gulp.task('sprite', function() {
+gulp.task('sprite', () => {
   // Generate our spritesheet
-  var spriteData = gulp.src('app/sprites/*.png').pipe(spritesmith({
+  const spriteData = gulp.src('app/sprites/*.png').pipe(sprite({
     imgName: 'sprite.png',
     imgPath: '/images/sprite.png',
     cssName: 'sprite.css',
@@ -195,12 +183,12 @@ gulp.task('sprite', function() {
   }));
 
   // Pipe image stream through image optimizer and onto disk
-  var imgStream = spriteData.img
+  const imgStream = spriteData.img
     .pipe($.imagemin())
     .pipe(gulp.dest('.tmp/images'));
 
   // Pipe CSS stream through CSS optimizer and onto disk
-  var cssStream = spriteData.css
+  const cssStream = spriteData.css
     .pipe(gulp.dest('.tmp/styles'));
 
   // Return a merged stream to handle both `end` events
@@ -208,7 +196,7 @@ gulp.task('sprite', function() {
 });
 
 // Copy web fonts to BUILD
-gulp.task('fonts', function() {
+gulp.task('fonts', () => {
   return gulp.src([
     'app/fonts/**'
   ])
@@ -220,7 +208,7 @@ gulp.task('fonts', function() {
 });
 
 // Copy all files at the root level (app)
-gulp.task('copy', function() {
+gulp.task('copy', () => {
   return gulp.src([
     'app/*.*', '!app/*.html'
     //, 'node_modules/apache-server-configs/dist/.htaccess'
@@ -235,12 +223,12 @@ gulp.task('copy', function() {
 });
 
 // Clean output directory
-gulp.task('clean', del.bind(null, ['.tmp', BUILD + '/*', '!' + BUILD + '/.git'], {
+gulp.task('clean', () => del(['.tmp', BUILD + '/*', '!' + BUILD + '/.git'], {
   dot: true
 }));
 
 // Watch files for changes & reload
-gulp.task('serve', ['styles'], function() {
+gulp.task('serve', ['styles'], () => {
   browserSync({
     notify: false,
     // Customize the BrowserSync console logging prefix
@@ -259,7 +247,7 @@ gulp.task('serve', ['styles'], function() {
 });
 
 // Build and serve the output from the BUILD
-gulp.task('serve:prd', ['default'], function() {
+gulp.task('serve:prd', ['default'], () => {
   browserSync({
     notify: false,
     logPrefix: LOG_PREFIX,
@@ -273,7 +261,7 @@ gulp.task('serve:prd', ['default'], function() {
 });
 
 // Build production files, the default task
-gulp.task('default', ['clean'], function(cb) {
+gulp.task('default', ['clean'], cb => {
   runSequence(
     'styles',
     // Google Font used instead 
@@ -283,7 +271,7 @@ gulp.task('default', ['clean'], function(cb) {
 });
 
 // Build and serve the output from the BUILD
-gulp.task('serve:prd-sw', ['default-sw'], function() {
+gulp.task('serve:prd-sw', ['default-sw'], () => {
   browserSync({
     notify: false,
     logPrefix: LOG_PREFIX,
@@ -297,16 +285,16 @@ gulp.task('serve:prd-sw', ['default-sw'], function() {
 });
 
 // Build production files, the default task
-gulp.task('default-sw', ['default'], function(cb) {
+gulp.task('default-sw', ['default'], cb => {
   runSequence(
     'sw',
     cb);
 });
 
 // Run PageSpeed Insights
-gulp.task('pagespeed', function(cb) {
+gulp.task('pagespeed', cb => {
   // Update the below URL to the public URL of your site
-  pagespeed.output('example.com', {
+  pagespeed('example.com', {
     strategy: 'mobile',
     // By default we use the PageSpeed Insights free (no API key) tier.
     // Use a Google Developer API key if you have one: http://goo.gl/RkN0vE
@@ -319,44 +307,36 @@ gulp.task('pagespeed', function(cb) {
 // Generate a service worker file that will provide offline functionality for
 // local resources. This should only be done for the BUILD directory, to allow
 // live reload to work as expected when serving from the 'app' directory.
-gulp.task('sw', function(callback) {
-  var rootDir = BUILD;
-
+gulp.task('sw', cb => {
   swPrecache({
     // Used to avoid cache conflicts when serving on localhost.
-    cacheId: packageJson.name || CACHE_ID,
-    // URLs that don't directly map to single static files can be defined here.
-    // If any of the files a URL depends on changes, then the URL's cache entry
-    // is invalidated and it will be refetched.
-    // Generally, URLs that depend on multiple files (such as layout templates)
-    // should list all the files; a change in any will invalidate the cache.
-    // In this case, './' is the top-level relative URL, and its response
-    // depends on the contents of the file 'BUILD/index.html'.
-    dynamicUrlToDependencies: {
-      './': [path.join(rootDir, 'index.html')]
-    },
+    cacheId: pkg.name || CACHE_ID,
     staticFileGlobs: [
       // Add/remove glob patterns to match your directory setup.
-      //rootDir + '/fonts/**/*.woff',
-      rootDir + '/images/**/*.u.{png,svg,ico,jpg,jpeg,gif}',
-      rootDir + '/js/**/*.js',
-      rootDir + '/css/**/*.css',
-      rootDir + '/**/*.{html,json,txt,webapp}'
+      //BUILD + '/fonts/**/*.woff',
+      BUILD + '/images/**/*.u.{png,svg,ico,jpg,jpeg,gif}',
+      BUILD + '/js/**/*.js',
+      BUILD + '/css/**/*.css',
+      BUILD + '/**/*.{html,json,txt,webapp}'
     ],
     // Translates a static file path to the relative URL that it's served from.
-    stripPrefix: path.join(rootDir, path.sep)
-  }, function(error, serviceWorkerFileContents) {
-    if (error) {
-      return callback(error);
+    stripPrefix: path.join(BUILD, path.sep)
+  }, (err, swFileContents) => {
+    if (err) {
+      cb(err);
+      return;
     }
-    fs.writeFile(path.join('.tmp', 'service-worker.js'),
-      serviceWorkerFileContents,
-      function(error) {
-        if (error) {
-          return callback(error);
-        }
-        callback();
-      });
+
+    const filepath = path.join('.tmp', 'service-worker.js');
+
+    fs.writeFile(filepath, swFileContents, err => {
+      if (err) {
+        cb(err);
+        return;
+      }
+
+      cb();
+    });
 
     gulp.src('.tmp/service-worker.js')
       .pipe($.uglify())

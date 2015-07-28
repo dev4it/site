@@ -7,6 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import gulp from 'gulp';
 import del from 'del';
+import preprocess from 'gulp-preprocess';
 import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
 import swPrecache from 'sw-precache';
@@ -23,9 +24,21 @@ import merge from 'merge-stream';
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
+var PROCESSING = {
+  context: {
+    ENV: 'DEV'
+  }
+};
+
+const TMP = '.tmp';
+const BUILD = 'dist';
+
+/**********************************/
 const LOG_PREFIX = 'SD4';
 const CACHE_ID = 'site-dev4it.1';
-const BUILD = 'build';
+const URL = 'dev4it.fr';
+const GOOGLE_ANALYTICS = 'UA-58514320-1';
+/**********************************/
 
 // Lint JavaScript
 gulp.task('jshint', () => {
@@ -43,12 +56,37 @@ gulp.task('jshint', () => {
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
+// Concatenate and minify JSON
+gulp.task('json', () => {
+  return gulp.src([
+    'app/**/data/**/*.json'
+  ])
+
+  .pipe($.jsonminify())
+
+  .pipe(gulp.dest(BUILD))
+    .pipe($.size({
+      title: 'json'
+    }));
+});
+
 // Concatenate and minify JavaScript
+gulp.task('scripts-dev', () => {
+  return gulp.src([
+    'app/**/scripts/**/*.js'
+  ])
+
+  .pipe(preprocess(PROCESSING))
+
+  .pipe(gulp.dest(TMP))
+    .pipe($.size({
+      title: 'scripts-dev'
+    }));
+});
+
 gulp.task('scripts', () => {
   return gulp.src([
-    'app/**/scripts/**/*.js',
-    'app/**/*angular*/angular*.js',
-    '!app/**/*angular*/*min*.js*'
+    'app/**/scripts/**/*.js'
   ])
 
   .pipe($.uglify({
@@ -81,7 +119,7 @@ gulp.task('styles', ['sprite'], () => {
     'app/**/normalize.css/**/*.css'
   ])
 
-  .pipe($.changed('.tmp/styles', {
+  .pipe($.changed(TMP + '/styles', {
     extension: '.css'
   }))
 
@@ -95,7 +133,7 @@ gulp.task('styles', ['sprite'], () => {
     browsers: AUTOPREFIXER_BROWSERS
   }))
 
-  .pipe(gulp.dest('.tmp'))
+  .pipe(gulp.dest(TMP))
     .pipe($.sourcemaps.write())
 
   .pipe(gulp.dest(BUILD))
@@ -104,16 +142,34 @@ gulp.task('styles', ['sprite'], () => {
     }));
 });
 
+// Scan your HTML for assets & preprocess them
+gulp.task('html-dev', () => {
+  return gulp.src([
+    'app/**/index.html',
+    'app/**/pages/*.html'
+  ])
+
+  .pipe(preprocess(PROCESSING))
+
+  // Output files
+  .pipe(gulp.dest(TMP))
+    .pipe($.size({
+      title: 'html-dev'
+    }));
+});
+
 // Scan your HTML for assets & optimize them
 gulp.task('html', () => {
   const assets = $.useref.assets({
-    searchPath: '{.tmp,app}'
+    searchPath: '{' + TMP + ',app}'
   });
 
   return gulp.src([
     'app/**/index.html',
     'app/**/pages/*.html'
   ])
+
+  .pipe(preprocess(PROCESSING))
 
   .pipe(assets)
 
@@ -135,8 +191,12 @@ gulp.task('html', () => {
   // Concatenate and minify styles
   .pipe($.if('*.css', $.minifyCss()))
 
+  .pipe($.rev())
+
   .pipe(assets.restore())
     .pipe($.useref())
+
+  .pipe($.revReplace())
 
   // Minify any HTML
   .pipe($.if('*.html', $.minifyHtml({
@@ -156,7 +216,7 @@ gulp.task('html', () => {
 gulp.task('images', () => {
   return gulp.src([
     'app/images/**/*',
-    '.tmp/images/**/*',
+    TMP + '/images/**/*',
     '!app/sprites/**/*'
   ])
 
@@ -185,11 +245,11 @@ gulp.task('sprite', () => {
   // Pipe image stream through image optimizer and onto disk
   const imgStream = spriteData.img
     .pipe($.imagemin())
-    .pipe(gulp.dest('.tmp/images'));
+    .pipe(gulp.dest(TMP + '/images'));
 
   // Pipe CSS stream through CSS optimizer and onto disk
   const cssStream = spriteData.css
-    .pipe(gulp.dest('.tmp/styles'));
+    .pipe(gulp.dest(TMP + '/styles'));
 
   // Return a merged stream to handle both `end` events
   return merge(imgStream, cssStream);
@@ -223,12 +283,17 @@ gulp.task('copy', () => {
 });
 
 // Clean output directory
-gulp.task('clean', () => del(['.tmp', BUILD + '/*', '!' + BUILD + '/.git'], {
+gulp.task('clean', () => del([TMP, BUILD + '/*', '!' + BUILD + '/.git'], {
+  dot: true
+}));
+
+// Clean all
+gulp.task('clean-all', () => del([TMP, BUILD, 'app/bower_components'], {
   dot: true
 }));
 
 // Watch files for changes & reload
-gulp.task('serve', ['styles'], () => {
+gulp.task('serve', ['default-dev', 'styles'], () => {
   browserSync({
     notify: false,
     // Customize the BrowserSync console logging prefix
@@ -237,17 +302,19 @@ gulp.task('serve', ['styles'], () => {
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: ['.tmp', 'app']
+    server: [TMP, 'app']
   });
 
-  gulp.watch(['app/**/*.html'], reload);
+  gulp.watch(['app/**/*.html'], ['html-dev', reload]);
   gulp.watch(['app/**/styles/**/**/**/*.{scss,css}'], ['styles', reload]);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
+  gulp.watch(['app/scripts/**/*.js'], ['scripts-dev', reload]);
   gulp.watch(['app/images/**/*'], reload);
 });
 
 // Build and serve the output from the BUILD
-gulp.task('serve:prd', ['default'], () => {
+gulp.task('serve:' + BUILD, ['default'], () => {
+
   browserSync({
     notify: false,
     logPrefix: LOG_PREFIX,
@@ -260,18 +327,28 @@ gulp.task('serve:prd', ['default'], () => {
   });
 });
 
+// Build dev files, the default task
+gulp.task('default-dev', ['clean'], cb => {
+  runSequence(
+    'styles', ['html-dev', 'scripts-dev'],
+    cb);
+});
+
 // Build production files, the default task
 gulp.task('default', ['clean'], cb => {
+  PROCESSING = {
+    context: {
+      ENV: 'PRD',
+      ANALYTICS: GOOGLE_ANALYTICS
+    }
+  };
   runSequence(
-    'styles',
-    // Google Font used instead 
-    //['jshint', 'html', 'scripts', 'images', 'fonts', 'copy'],
-    ['jshint', 'html', 'scripts', 'images', 'copy'],
+    'styles', ['jshint', 'html', 'scripts', 'images', 'copy'],
     cb);
 });
 
 // Build and serve the output from the BUILD
-gulp.task('serve:prd-sw', ['default-sw'], () => {
+gulp.task('serve:' + BUILD + '-sw', ['default-sw'], () => {
   browserSync({
     notify: false,
     logPrefix: LOG_PREFIX,
@@ -294,7 +371,7 @@ gulp.task('default-sw', ['default'], cb => {
 // Run PageSpeed Insights
 gulp.task('pagespeed', cb => {
   // Update the below URL to the public URL of your site
-  pagespeed('example.com', {
+  pagespeed(URL, {
     strategy: 'mobile',
     // By default we use the PageSpeed Insights free (no API key) tier.
     // Use a Google Developer API key if you have one: http://goo.gl/RkN0vE
@@ -327,7 +404,7 @@ gulp.task('sw', cb => {
       return;
     }
 
-    const filepath = path.join('.tmp', 'service-worker.js');
+    const filepath = path.join(TMP, 'service-worker.js');
 
     fs.writeFile(filepath, swFileContents, err => {
       if (err) {
@@ -338,7 +415,7 @@ gulp.task('sw', cb => {
       cb();
     });
 
-    gulp.src('.tmp/service-worker.js')
+    gulp.src(TMP + '/service-worker.js')
       .pipe($.uglify())
       .pipe(gulp.dest(BUILD));
   });

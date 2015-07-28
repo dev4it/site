@@ -43,9 +43,8 @@
   <!-- Page styles -->
   <link href="//fonts.googleapis.com/css?family=Roboto:500,100,300,300italic" rel="stylesheet" type="text/css">
   <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> -->
 
-  <!-- build:css(.tmp/) css/build-190615.css -->
+  <!-- build:css(.tmp/) css/build.css -->
   <link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/sprite.css">
@@ -180,14 +179,21 @@
   </div>
 
   <!-- Page scripts -->
+  <!-- @if ENV='PRD' -->
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular-route.min.js"></script>
+  <!-- @endif -->
+  <!-- @if ENV!='PRD' -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <!-- @endif -->
 
-  <!-- build:js(app/) js/build-190615.js -->
+  <!-- build:js(app/) js/build.js -->
   <script src="scripts/app.js"></script>
   <script src="scripts/controllers.js"></script>
   <!-- endbuild -->
 
+  <!-- @if ENV='PRD' -->
   <!-- Google Analytics -->
   <script>
   (function(i, s, o, g, r, a, m) {
@@ -201,10 +207,10 @@
     a.src = g;
     m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-58514320-1', 'auto');
-  //ga('send', 'pageview');
+  ga('create', '<!-- @echo ANALYTICS -->', 'auto');
   </script>
   <!-- End Google Analytics -->
+  <!-- @endif -->
 </body>
 
 </html>

@@ -48,11 +48,14 @@
 
       $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
 
+        // @if ENV='PRD'
+        console.log($location.url());
         if ($window.ga) {
           $window.ga('send', 'pageview', {
             page: $location.url()
           });
         }
+        // @endif
 
         $anchorScroll.yOffset = angular.element(document.querySelector('header'))[0].offsetHeight;
         $anchorScroll();

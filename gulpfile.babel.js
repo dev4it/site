@@ -1,3 +1,5 @@
+'use strict';
+
 // This gulpfile makes use of new JavaScript features.
 // Babel handles this without us having to do anything. It just works.
 // You can read more about the new JavaScript features here:
@@ -7,7 +9,6 @@ import fs from 'fs';
 import path from 'path';
 import gulp from 'gulp';
 import del from 'del';
-import preprocess from 'gulp-preprocess';
 import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
 import swPrecache from 'sw-precache';
@@ -37,13 +38,15 @@ const BUILD = 'dist';
 const LOG_PREFIX = 'SD4';
 const CACHE_ID = 'site-dev4it.1';
 const URL = 'dev4it.fr';
-const GOOGLE_ANALYTICS = 'UA-58514320-1';
+//const GOOGLE_ANALYTICS = 'UA-58514320-1';
+const GOOGLE_ANALYTICS = 'UA-XXX-1';
 /**********************************/
 
 // Lint JavaScript
 gulp.task('jshint', () => {
   return gulp.src([
-    'app/scripts/**/*.js'
+    'app/scripts/**/*.js',
+    '!app/scripts/vendors/**/*.js'
   ])
 
   .pipe(reload({
@@ -76,7 +79,7 @@ gulp.task('scripts-dev', () => {
     'app/**/scripts/**/*.js'
   ])
 
-  .pipe(preprocess(PROCESSING))
+  .pipe($.preprocess(PROCESSING))
 
   .pipe(gulp.dest(TMP))
     .pipe($.size({
@@ -103,25 +106,16 @@ gulp.task('scripts', () => {
 gulp.task('styles', ['sprite'], () => {
 
   const AUTOPREFIXER_BROWSERS = [
-    'ie >= 9',
-    'ie_mob >= 10',
-    'ff >= 30',
-    'chrome >= 34',
-    'safari >= 7',
-    'opera >= 23',
-    'ios >= 7',
-    'android >= 4.4',
-    'bb >= 10'
+    '> 5%'
   ];
 
   return gulp.src([
     'app/**/styles/**/*.scss',
+    'app/**/styles/**/*.css',
     'app/**/normalize.css/**/*.css'
   ])
 
-  .pipe($.changed(TMP + '/styles', {
-    extension: '.css'
-  }))
+  .pipe($.newer(TMP + '/styles'))
 
   .pipe($.sourcemaps.init())
 
@@ -149,7 +143,7 @@ gulp.task('html-dev', () => {
     'app/**/pages/*.html'
   ])
 
-  .pipe(preprocess(PROCESSING))
+  .pipe($.preprocess(PROCESSING))
 
   // Output files
   .pipe(gulp.dest(TMP))
@@ -169,7 +163,7 @@ gulp.task('html', () => {
     'app/**/pages/*.html'
   ])
 
-  .pipe(preprocess(PROCESSING))
+  .pipe($.preprocess(PROCESSING))
 
   .pipe(assets)
 
@@ -184,6 +178,7 @@ gulp.task('html', () => {
     ],
     ignore: [
       /.toggled/,
+      /.affix/,
       /.active/
     ]
   })))
@@ -343,7 +338,7 @@ gulp.task('default', ['clean'], cb => {
     }
   };
   runSequence(
-    'styles', ['jshint', 'html', 'scripts', 'images', 'copy'],
+    'styles', ['jshint', 'html', 'scripts', 'images', 'fonts', 'copy'],
     cb);
 });
 
